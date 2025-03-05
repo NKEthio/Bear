@@ -1,0 +1,100 @@
+/* Lesson2Game3.css */
+
+.lesson2-game3 {
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* width: 90%; */
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.lesson2-game3 h2 {
+    font-size: 2rem;
+    color: #4a90e2;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.lesson2-game3 p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.score {
+    font-size: 1.5rem;
+    color: #06d6a0;
+    margin-bottom: 10px;
+}
+
+.sentence-container {
+    background-color: #d8dfe6;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 50px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    border: 2px dashed #4a90e2;
+}
+
+.dropped-word {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.lesson2-game3 .lesson-words-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.lesson2-game3 .word {
+    background-color: #ff4a3d;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    height: 2em;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: grab;
+    transition: background-color 0.3s ease;
+}
+
+.lesson2-game3 .word:hover {
+    background-color: #b41105;
+}
+.lesson2-game3 .word:last-child {
+    background-color: #ff4a3d;
+    height: 2em;
+    padding: 10px 20px;
+}
+.feedback {
+    font-size: 1.5rem;
+    color: #06d6a0;
+    margin-top: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.check-button, .next-button {
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.check-button:hover, .next-button:hover {
+    background-color: #357abd;
+}

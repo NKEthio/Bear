@@ -1,0 +1,90 @@
+.word-cubes-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    perspective: 1000px; /* Adds 3D perspective to the container */
+  }
+  
+  .game-header {
+    margin-bottom: 20px;
+  }
+  
+  .target-image {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 15px;
+    border: 2px solid #333;
+    border-radius: 5px;
+  }
+  
+  .cubes-grid {
+    display: grid;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .cube {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out; /* Smoother transition for rotation */
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Add shadow for separation */
+    border-radius: 5px;
+  }
+  
+  .cube-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    background: transparent; /* Ensure transparency for layering */
+  }
+  
+  .cube-letter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    border: 2px solid #333;
+    font-size: 28px;
+    font-weight: bold;
+    transform-origin: center;
+    border-radius: 5px;
+    backface-visibility: hidden; /* Prevents flickering during rotation */
+  }
+  
+  .face-0 { transform: rotateY(0deg) translateZ(60px); }
+  .face-1 { transform: rotateY(60deg) translateZ(60px); }
+  .face-2 { transform: rotateY(120deg) translateZ(60px); }
+  .face-3 { transform: rotateY(180deg) translateZ(60px); }
+  .face-4 { transform: rotateY(240deg) translateZ(60px); }
+  .face-5 { transform: rotateY(300deg) translateZ(60px); }
+  
+  .correct {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .restart-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .restart-button:hover {
+    background: #0056b3;
+  }

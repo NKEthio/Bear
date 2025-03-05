@@ -1,0 +1,70 @@
+.MatchCase {
+    background-color: rgb(218, 226, 144);
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.drag-drop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(216, 230, 94);
+}
+
+.drag {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0px ;
+}
+
+.drags {
+    cursor: move;
+    color: white;
+    padding: 20px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    background-color: brown;
+    font-size: 18px;
+    user-select: none;
+}
+
+.drops {
+    background-color: bisque;
+    padding: 40px 20px;
+    margin: 10px;
+    border: 1px dashed black;
+    width: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    user-select: none;
+}
+
+
+.dropzone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.new {
+    color: red;
+    font-size: 2em;
+    padding: 10px 20px ;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 3px 2px black;
+    background-color: aquamarine;
+}

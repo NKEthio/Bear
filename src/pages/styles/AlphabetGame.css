@@ -1,0 +1,18 @@
+.alphabetgame-btn button {
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: #4caf50; /* Green */
+    border: none;
+    border-radius: 50px; /* Rounded pill shape */
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .alphabetgame-btn button:hover {
+    background: #f44336; /* Red */
+    transform: scale(1.15) rotate(5deg);
+  }

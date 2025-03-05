@@ -1,0 +1,36 @@
+
+.whole-quiz {
+    background-color: #F0F0C0;
+    border: none;
+    border-end-end-radius: 30px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.quiz {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.choice {
+    margin: 10px;
+    padding: 20px;
+    width:25%;
+    height: 100px;
+    color: white;
+    font-size: 3em;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.specifics {
+    font-size: 2em;
+    margin: 10px;
+    padding: 20px;
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: brown;
+    font-family: 'Courier New', Courier, monospace;
+}

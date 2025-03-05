@@ -1,0 +1,268 @@
+/* Home.css */
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffebcd 0%, #87ceeb 100%); /* Cream to sky blue */
+  min-height: 100vh;
+  font-family: 'Chewy', 'Comic Sans MS', sans-serif; /* Bubbly, kid-friendly font */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Carnival tent-like header background */
+#headimg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(150px, 25vh, 300px); /* Responsive height between 150px and 300px */
+  background: repeating-linear-gradient(
+    45deg,
+    #ff4500,
+    #ff4500 20px,
+    #ffd700 20px,
+    #ffd700 40px
+  ); /* Orange and yellow stripes */
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+  z-index: 0;
+}
+
+/* Header text section */
+#headText {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: clamp(20px, 5vw, 50px) 20px; /* Responsive padding */
+  color: #fff;
+}
+
+#headText h1 {
+  font-size: clamp(32px, 8vw, 60px); /* Scales between 32px and 60px */
+  color: #ff1493; /* Bright pink */
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 10px #ff69b4; /* Glowing effect */
+  margin-bottom: clamp(10px, 3vw, 20px); /* Responsive margin */
+  animation: bounceIn 1.5s ease-in-out;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+#headText p {
+  font-size: clamp(16px, 4vw, 22px); /* Scales between 16px and 22px */
+  color: #333;
+  background: rgba(255, 255, 255, 0.8);
+  padding: clamp(8px, 2vw, 10px) clamp(10px, 3vw, 20px); /* Responsive padding */
+  border-radius: 15px;
+  display: inline-block;
+  margin-bottom: clamp(15px, 4vw, 30px); /* Responsive margin */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 90%; /* Prevents overflow on small screens */
+}
+
+#headText button {
+  font-size: clamp(18px, 5vw, 24px); /* Scales between 18px and 24px */
+  padding: clamp(10px, 3vw, 15px) clamp(20px, 6vw, 40px); /* Responsive padding */
+  background: #32cd32; /* Lime green */
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+#headText button:hover {
+  background: #ff6347; /* Tomato red */
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Interactive log section */
+#interactiveLog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(15px, 3vw, 30px); /* Responsive gap */
+  padding: clamp(20px, 5vw, 40px) 20px; /* Responsive padding */
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  margin-top: clamp(50px, 15vh, 100px); /* Responsive margin */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+/* Figure styling for cards */
+#interactiveLog figure {
+  text-align: center;
+  background: #fff;
+  padding: clamp(10px, 3vw, 20px); /* Responsive padding */
+  border-radius: 15px;
+  border: 4px dashed #ffeb3b; /* Yellow dashed border */
+  transition: all 0.3s ease;
+  width: clamp(140px, 25vw, 200px); /* Responsive width */
+  flex: 1 1 auto; /* Allows flex items to grow/shrink */
+  max-width: 100%; /* Prevents overflow */
+}
+
+#interactiveLog figure:hover {
+  transform: translateY(-10px) rotate(3deg);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  border-color: #ff69b4; /* Pink on hover */
+}
+
+#interactiveLog img {
+  max-width: clamp(100px, 20vw, 150px); /* Responsive image size */
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: clamp(8px, 2vw, 15px); /* Responsive margin */
+  border: 3px solid #4682b4; /* Steel blue frame */
+}
+
+/* Buttons inside figures */
+#interactiveLog button {
+  font-size: clamp(14px, 3vw, 18px); /* Scales between 14px and 18px */
+  padding: clamp(6px, 2vw, 10px) clamp(10px, 3vw, 20px); /* Responsive padding */
+  background: #ff9800; /* Orange */
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#interactiveLog button:hover {
+  background: #4caf50; /* Green */
+  transform: scale(1.1);
+}
+
+/* Link styling */
+.normal-link {
+  text-decoration: none;
+}
+
+/* Fun floating balloons background effect */
+.home-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="20" fill="#ff69b4" opacity="0.6"/><circle cx="150" cy="100" r="15" fill="#32cd32" opacity="0.6"/><circle cx="250" cy="30" r="25" fill="#ffd700" opacity="0.6"/></svg>') repeat;
+  animation: floatBalloons 15s infinite linear;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatBalloons {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-100vh); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  /* Tablets and smaller laptops */
+  #headText {
+    padding: clamp(15px, 4vw, 40px) 15px;
+  }
+
+  #interactiveLog {
+    gap: clamp(15px, 2.5vw, 25px);
+    padding: clamp(15px, 4vw, 30px) 15px;
+  }
+
+  #interactiveLog figure {
+    width: clamp(160px, 22vw, 180px);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Larger mobile devices */
+  #headimg {
+    height: clamp(120px, 20vh, 250px);
+  }
+
+  #headText h1 {
+    font-size: clamp(28px, 6vw, 50px);
+  }
+
+  #headText p {
+    font-size: clamp(14px, 3.5vw, 20px);
+    max-width: 85%;
+  }
+
+  #headText button {
+    font-size: clamp(16px, 4vw, 22px);
+    padding: clamp(8px, 2.5vw, 12px) clamp(15px, 5vw, 35px);
+  }
+
+  #interactiveLog {
+    margin-top: clamp(40px, 10vh, 80px);
+    gap: clamp(10px, 2vw, 20px);
+  }
+
+  #interactiveLog figure {
+    width: clamp(140px, 30vw, 170px);
+  }
+
+  #interactiveLog img {
+    max-width: clamp(90px, 18vw, 130px);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Small mobile devices */
+  .home-container {
+    padding: 10px;
+  }
+
+  #headimg {
+    height: clamp(100px, 18vh, 200px);
+  }
+
+  #headText {
+    padding: clamp(10px, 3vw, 30px) 10px;
+  }
+
+  #headText h1 {
+    font-size: clamp(24px, 7vw, 40px);
+  }
+
+  #headText p {
+    font-size: clamp(12px, 3vw, 18px);
+    padding: clamp(6px, 1.5vw, 8px) clamp(8px, 2vw, 15px);
+    max-width: 100%;
+  }
+
+  #headText button {
+    font-size: clamp(14px, 4vw, 20px);
+    padding: clamp(6px, 2vw, 10px) clamp(12px, 4vw, 30px);
+  }
+
+  #interactiveLog {
+    margin-top: clamp(30px, 8vh, 60px);
+    padding: clamp(10px, 3vw, 20px) 10px;
+    gap: clamp(10px, 2vw, 15px);
+  }
+
+  #interactiveLog figure {
+    width: clamp(120px, 45vw, 160px);
+  }
+
+  #interactiveLog img {
+    max-width: clamp(80px, 20vw, 120px);
+  }
+
+  #interactiveLog button {
+    font-size: clamp(12px, 3vw, 16px);
+    padding: clamp(5px, 1.5vw, 8px) clamp(8px, 2vw, 16px);
+  }
+}

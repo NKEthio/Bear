@@ -1,0 +1,283 @@
+/* Lesson1.css */
+
+.Lesson1 {
+    max-width: 1200px;
+    margin: clamp(10px, 2vw, 20px) auto; /* Responsive margin */
+    padding: clamp(10px, 3vw, 20px); /* Responsive padding */
+    background: linear-gradient(135deg, #ffeb3b, #40c4ff); /* Yellow to blue gradient */
+    border-radius: clamp(15px, 2vw, 20px); /* Responsive border radius */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    font-family: 'Bubblegum Sans', 'Comic Sans MS', sans-serif; /* Playful font */
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Fun animated background effect */
+  .Lesson1::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    animation: float 10s infinite ease-in-out;
+    pointer-events: none;
+  }
+  
+  @keyframes float {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(10%, 10%); }
+    100% { transform: translate(0, 0); }
+  }
+  
+  /* Heading */
+  .Lesson1 h1 {
+    font-size: clamp(32px, 8vw, 48px); /* Responsive font size */
+    color: #e91e63; /* Bright pink */
+    text-align: center;
+    margin-bottom: clamp(15px, 4vw, 30px); /* Responsive margin */
+    text-transform: uppercase;
+    letter-spacing: clamp(1px, 0.5vw, 2px); /* Responsive letter spacing */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+  
+  /* Lessons container */
+  .lessons-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 40vw, 300px), 1fr)); /* Responsive columns */
+    gap: clamp(10px, 2vw, 20px); /* Responsive gap */
+    padding: clamp(10px, 3vw, 20px); /* Responsive padding */
+  }
+  
+  /* Lesson card */
+  .lesson-card {
+    background: #ffffff;
+    border: 4px solid #ff5722; /* Orange border */
+    border-radius: clamp(10px, 2vw, 15px); /* Responsive border radius */
+    padding: clamp(10px, 2vw, 15px); /* Responsive padding */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+  }
+  
+  .lesson-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .lesson-card h2 {
+    font-size: clamp(18px, 4vw, 24px); /* Responsive font size */
+    color: #2196f3; /* Bright blue */
+    text-align: center;
+    margin-bottom: clamp(10px, 2vw, 15px); /* Responsive margin */
+    background: rgba(255, 255, 255, 0.8);
+    padding: clamp(3px, 1vw, 5px); /* Responsive padding */
+    border-radius: clamp(5px, 1vw, 10px); /* Responsive border radius */
+  }
+  
+  /* Word boxes container (words above sentence) */
+  .new-sentence {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    gap: clamp(8px, 2vw, 10px); /* Responsive gap */
+    width: 100%;
+  }
+  
+  /* Container for individual words */
+  .words-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 10px); /* Responsive gap */
+    width: 100%;
+  }
+  
+  /* Word box */
+  .word-box {
+    background: linear-gradient(45deg, #ab47bc, #42a5f5); /* Purple to blue gradient */
+    border-radius: clamp(8px, 1.5vw, 12px); /* Responsive border radius */
+    padding: clamp(6px, 1.5vw, 10px); /* Responsive padding */
+    width: clamp(90px, 20vw, 120px); /* Responsive width */
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .word-box:hover {
+    transform: scale(1.1) rotate(2deg);
+    background: linear-gradient(45deg, #f06292, #4fc3f7); /* Pink to light blue */
+  }
+  
+  .word-box img {
+    max-width: clamp(60px, 15vw, 80px); /* Responsive image size */
+    height: auto;
+    border-radius: clamp(5px, 1vw, 8px); /* Responsive border radius */
+    margin-bottom: clamp(5px, 1vw, 8px); /* Responsive margin */
+    border: 2px solid #fff;
+  }
+  
+  .word-box p {
+    font-size: clamp(14px, 3.5vw, 18px); /* Responsive font size */
+    color: #fff;
+    margin: 5px 0;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .word-box span {
+    font-size: clamp(10px, 2.5vw, 12px); /* Responsive font size */
+    color: #ffeb3b; /* Bright yellow */
+    display: block;
+    font-style: italic;
+  }
+  
+  /* Sentence box (below words) */
+  .word-box.sentence {
+    width: clamp(160px, 40vw, 200px); /* Responsive width */
+    background: linear-gradient(45deg, #ff9800, #ffeb3b); /* Orange to yellow */
+    margin-top: clamp(5px, 1vw, 10px); /* Space between words and sentence */
+  }
+  
+  .word-box.sentence:hover {
+    background: linear-gradient(45deg, #ff5722, #fff176); /* Darker orange to light yellow */
+  }
+  
+  .word-box.sentence p {
+    font-size: clamp(16px, 4vw, 20px); /* Responsive font size */
+  }
+  
+  /* Navigation buttons container */
+  .Lesson1 > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows wrapping on small screens */
+    gap: clamp(5px, 2vw, 10px); /* Responsive gap */
+    padding: clamp(10px, 2vw, 20px); /* Responsive padding */
+  }
+  
+  /* Navigation buttons */
+  .Lesson1 button {
+    padding: clamp(8px, 2.5vw, 12px) clamp(15px, 4vw, 25px); /* Responsive padding */
+    font-size: clamp(14px, 3.5vw, 18px); /* Responsive font size */
+    font-weight: bold;
+    color: #fff;
+    background: #4caf50; /* Green */
+    border: none;
+    border-radius: 50px; /* Rounded pill shape */
+    margin: clamp(5px, 1vw, 10px); /* Responsive margin */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex: 1; /* Allows buttons to grow equally */
+    min-width: clamp(100px, 25vw, 150px); /* Ensures tap-friendly size */
+  }
+  
+  .Lesson1 button:hover {
+    background: #f44336; /* Red */
+    transform: scale(1.15) rotate(5deg);
+  }
+  
+  .Lesson1 .normal-link {
+    text-decoration: none;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .lessons-container {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  
+    .word-box {
+      width: clamp(100px, 18vw, 110px);
+    }
+  
+    .word-box.sentence {
+      width: clamp(150px, 35vw, 190px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .Lesson1 h1 {
+      font-size: clamp(28px, 6vw, 40px);
+    }
+  
+    .lessons-container {
+      grid-template-columns: 1fr; /* Single column for mobile */
+    }
+  
+    .word-box {
+      width: clamp(90px, 22vw, 120px);
+    }
+  
+    .word-box.sentence {
+      width: clamp(140px, 45vw, 200px);
+    }
+  
+    .Lesson1 > div:last-child {
+      flex-direction: column; /* Stack buttons vertically */
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .Lesson1 {
+      padding: clamp(8px, 2vw, 15px);
+    }
+  
+    .Lesson1 h1 {
+      font-size: clamp(24px, 5vw, 36px);
+    }
+  
+    .lesson-card {
+      padding: clamp(8px, 1.5vw, 12px);
+    }
+  
+    .lesson-card h2 {
+      font-size: clamp(16px, 3.5vw, 20px);
+    }
+  
+    .word-box {
+      width: clamp(80px, 25vw, 100px);
+    }
+  
+    .word-box img {
+      max-width: clamp(50px, 12vw, 70px);
+    }
+  
+    .word-box p {
+      font-size: clamp(12px, 3vw, 16px);
+    }
+  
+    .word-box span {
+      font-size: clamp(8px, 2vw, 10px);
+    }
+  
+    .word-box.sentence {
+      width: clamp(120px, 50vw, 180px);
+    }
+  
+    .word-box.sentence p {
+      font-size: clamp(14px, 3.5vw, 18px);
+    }
+  
+    .Lesson1 button {
+      padding: clamp(6px, 2vw, 10px) clamp(12px, 3vw, 20px);
+      font-size: clamp(12px, 3vw, 16px);
+      min-width: clamp(90px, 30vw, 120px);
+    }
+  }

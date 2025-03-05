@@ -1,0 +1,196 @@
+/* Container */
+.grammar-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1); /* Slightly transparent futuristic glass effect */
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 221, 235, 0.5); /* Glowing cyan shadow */
+  backdrop-filter: blur(5px); /* Frosted glass effect */
+}
+
+/* Heading */
+.grammar-container h2 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #a59501; /* Bright yellow */
+  text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff6bcb; /* Neon glow effect */
+  animation: glow 2s infinite alternate; /* Pulsing glow */
+}
+
+/* Intro paragraph */
+.grammar-container .intro {
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: white; /* Light cyan */
+  padding: 15px;
+  background: #85115c; /* Subtle cyan background */
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+/* Grammar card */
+.grammar-container .grammar-card {
+  margin: 20px 0;
+  padding: 15px;
+  background: linear-gradient(45deg, #ff6bcb, #7c4dff); /* Pink to purple gradient */
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grammar-container .grammar-card:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 0 20px #ffeb3b; /* Bright yellow glow */
+}
+
+/* Section headings */
+.grammar-container h3 {
+  font-size: 1.8em;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(255, 235, 59, 0.3); /* Light yellow background */
+  transition: background 0.3s ease;
+}
+
+.grammar-container h3:hover {
+  background: #ffeb3b; /* Full yellow on hover */
+  color: #7c4dff; /* Purple text */
+}
+
+/* Content inside sections */
+.grammar-container .content {
+  padding: 15px;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #e0f7fa; /* Light cyan */
+  background: rgba(0, 0, 0, 0.2); /* Dark overlay for contrast */
+  border-radius: 10px;
+  animation: slideIn 0.5s ease-out; /* Slide-in animation */
+}
+
+/* Lists */
+.grammar-container ol, .grammar-container ul {
+  margin-left: 20px;
+  padding-left: 10px;
+}
+
+.grammar-container li {
+  margin: 10px 0;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.grammar-container li:hover {
+  background: rgba(255, 235, 59, 0.4); /* Yellow highlight on hover */
+}
+
+/* Bold and italic text */
+.grammar-container b,.grammar-container strong {
+  color: #ffeb3b; /* Yellow for emphasis */
+}
+
+.grammar-container em,.grammar-container  i {
+  color: #ff6bcb; /* Pink for italics */
+}
+
+/* Subheadings */
+.grammar-container h4 {
+  font-size: 1.4em;
+  color: #7c4dff; /* Purple */
+  margin-top: 15px;
+  text-shadow: 0 0 5px rgba(124, 77, 255, 0.7);
+}
+
+/* Interactive buttons (if you add any later) */
+.grammar-container button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: #fff;
+  background: #ff6bcb; /* Pink */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 5px #7c4dff; /* Purple shadow */
+  transition: all 0.3s ease;
+}
+
+.grammar-container button:hover {
+  background: #7c4dff; /* Purple on hover */
+  transform: translateY(-3px); /* Bounce up */
+  box-shadow: 0 8px #ffeb3b; /* Yellow shadow */
+}
+
+.grammar-container button:active {
+  transform: translateY(2px); /* Press down */
+  box-shadow: 0 2px #ffeb3b;
+}
+
+/* Comparison section */
+.grammar-container .comparision {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.grammar-container .comparision div {
+  flex: 1;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.grammar-container .comparision div:hover {
+  transform: translateY(-5px); /* Lift on hover */
+}
+
+/* Animations */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff6bcb;
+  }
+  100% {
+    text-shadow: 0 0 20px #ffeb3b, 0 0 30px #ff6bcb;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .grammar-container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .grammar-container h2 {
+    font-size: 2em;
+  }
+
+  .grammar-container h3 {
+    font-size: 1.5em;
+  }
+
+  .grammar-container .content {
+    font-size: 1em;
+  }
+
+  .grammar-container .comparision {
+    flex-direction: column;
+  }
+}
