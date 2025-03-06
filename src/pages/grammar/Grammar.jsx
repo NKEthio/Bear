@@ -213,7 +213,7 @@ function Grammar() {
             </div>
         )}
       </div>
-            <div>
+            <div className="road">
                 <Link to='/games/sentences' className='normal-link '> <button>Back</button> </Link>
                 <Link to='/games/grammar' className='normal-link '> <button>Next</button> </Link>
             </div>

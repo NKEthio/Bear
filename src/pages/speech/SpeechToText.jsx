@@ -1,29 +1,41 @@
 import { useState, useEffect } from "react";
+import "./Speech.css";
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
-const practiceSentences = [
-  "The quick brown fox jumps over the lazy dog",
-  "She sells seashells by the seashore",
-  "How much wood would a woodchuck chuck",
-  "Peter Piper picked a peck of pickled peppers",
-];
+const levels = {
+  easy: [
+    "Cat",
+    "Dog",
+    "Sun",
+    "Moon",
+    "Ball",
+  ],
+  medium: [
+    "The sun is bright",
+    "Birds can fly",
+    "I love ice cream",
+    "Water is blue",
+    "Trees are green",
+  ],
+  hard: [
+    "The quick brown fox jumps over the lazy dog",
+    "She sells seashells by the seashore",
+    "How much wood would a woodchuck chuck",
+    "Peter Piper picked a peck of pickled peppers",
+  ],
+};
 
-// Speech Transcription Handler
 function useSpeechTranscription(setText, setEvaluationResult, currentSentence) {
   useEffect(() => {
-    recognition.continuous = true;
-    recognition.interimResults = true;
+    recognition.continuous = false;
+    recognition.interimResults = false;
 
     recognition.onresult = (event) => {
-      let transcript = "";
-      for (let i = 0; i < event.results.length; i++) {
-        transcript += event.results[i][0].transcript + " ";
-      }
-      const trimmedTranscript = transcript.trim();
-      setText(trimmedTranscript);
-      evaluateSpeech(trimmedTranscript, currentSentence, setEvaluationResult);
+      const transcript = event.results[0][0].transcript.trim();
+      setText(transcript);
+      evaluateSpeech(transcript, currentSentence, setEvaluationResult);
     };
 
     recognition.onerror = (event) => {
@@ -36,7 +48,6 @@ function useSpeechTranscription(setText, setEvaluationResult, currentSentence) {
   }, [currentSentence]);
 }
 
-// Speech Evaluation Function
 function evaluateSpeech(transcribedText, practiceSentence, setEvaluationResult) {
   if (!transcribedText) {
     setEvaluationResult(null);
@@ -45,83 +56,40 @@ function evaluateSpeech(transcribedText, practiceSentence, setEvaluationResult) 
 
   const practiceWords = practiceSentence.toLowerCase().split(" ");
   const spokenWords = transcribedText.toLowerCase().split(" ");
-  const result = [];
-  let currentPosition = 0;
-
-  for (let index = 0; index < practiceWords.length; index++) {
-    const word = practiceWords[index];
-    const spokenWord = spokenWords[currentPosition];
-    const isCorrect = spokenWord === word;
-
-    result.push({
-      word: word,
-      isCorrect: isCorrect,
-      spoken: spokenWord || "",
-    });
-
-    if (isCorrect) {
-      currentPosition++;
-    } else {
-      break;
-    }
-  }
+  const result = practiceWords.map((word, index) => ({
+    word,
+    spoken: spokenWords[index] || "",
+    isCorrect: spokenWords[index] === word,
+  }));
 
   setEvaluationResult(result);
 }
 
-// Render Functions
 function RenderEvaluatedText({ evaluationResult, practiceSentence }) {
-  if (!evaluationResult) {
-    return <span>{practiceSentence}</span>;
-  }
+  if (!evaluationResult) return <span>{practiceSentence}</span>;
 
   return (
     <span>
       {evaluationResult.map((item, index) => (
         <span
           key={index}
-          style={{
-            fontWeight: item.isCorrect ? "bold" : "normal",
-            color: item.spoken && !item.isCorrect ? "red" : "black",
-            marginRight: "5px",
-          }}
+          className={item.isCorrect ? "correct-word" : "incorrect-word"}
         >
-          {item.word}
+          {item.word} 
         </span>
       ))}
     </span>
   );
 }
 
-function RenderSpokenText({ evaluationResult }) {
-  if (!evaluationResult) {
-    return null;
-  }
-
-  return (
-    <span>
-      {evaluationResult.map((item, index) => (
-        <span
-          key={index}
-          style={{
-            marginRight: "5px",
-            color: item.spoken && !item.isCorrect ? "red" : "black",
-          }}
-        >
-          {item.spoken || ""}
-        </span>
-      ))}
-    </span>
-  );
-}
-
-// Main Component
 export default function SpeechToText() {
   const [text, setText] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [evaluationResult, setEvaluationResult] = useState(null);
+  const [currentLevel, setCurrentLevel] = useState("easy");
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
-  const currentPracticeSentence = practiceSentences[currentSentenceIndex];
+  const sentences = levels[currentLevel];
+  const currentPracticeSentence = sentences[currentSentenceIndex];
 
   useSpeechTranscription(setText, setEvaluationResult, currentPracticeSentence);
 
@@ -138,102 +106,41 @@ export default function SpeechToText() {
   const nextSentence = () => {
     setEvaluationResult(null);
     setText("");
-    setCurrentSentenceIndex((prev) =>
-      prev < practiceSentences.length - 1 ? prev + 1 : 0
-    );
-    if (isListening) {
-      recognition.stop();
-      recognition.start();
-    }
+    setCurrentSentenceIndex((prev) => (prev < sentences.length - 1 ? prev + 1 : 0));
   };
 
-  const prevSentence = () => {
+  const changeLevel = (level) => {
+    setCurrentLevel(level);
+    setCurrentSentenceIndex(0);
     setEvaluationResult(null);
     setText("");
-    setCurrentSentenceIndex((prev) =>
-      prev > 0 ? prev - 1 : practiceSentences.length - 1
-    );
-    if (isListening) {
-      recognition.stop();
-      recognition.start();
-    }
-  };
-
-  const retrySentence = () => {
-    setEvaluationResult(null);
-    setText("");
-    if (isListening) {
-      recognition.stop();
-      recognition.start();
-    }
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2>Speech to Text Practice</h2>
-      <div style={{ marginBottom: "20px" }}>
-        <button
-          onClick={isListening ? stopListening : startListening}
-          style={{
-            padding: "10px 20px",
-            margin: "0 10px 20px 10px",
-            backgroundColor: isListening ? "red" : "green",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-            fontSize: "16px",
-          }}
-        >
+    <div className="speech-container">
+      <h2>Speech Practice Game</h2>
+      <div className="speech-buttons">
+        <button onClick={isListening ? stopListening : startListening} className={isListening ? "stop-btn" : "start-btn"}>
           {isListening ? "Stop Listening" : "Start Listening"}
         </button>
       </div>
-
-      <div style={{ marginBottom: "20px" }}>
-        <p>
-          <strong>
-            Practice this sentence
-            <p>{currentPracticeSentence}</p>
-            ({currentSentenceIndex + 1}/{practiceSentences.length}):
-          </strong>
-        </p>
-        <div style={{ minHeight: "24px" }}>
-          <RenderEvaluatedText
-            evaluationResult={evaluationResult}
-            practiceSentence={currentPracticeSentence}
-          />
-        </div>
-        <p><strong>You said:</strong></p>
-        <div style={{ minHeight: "24px" }}>
-          <RenderSpokenText evaluationResult={evaluationResult} />
-        </div>
-        <div style={{ marginTop: "10px" }}>
-          <button onClick={prevSentence} style={{ padding: "5px 10px", marginRight: "10px", backgroundColor: "#666", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
-            Previous
-          </button>
-          <button onClick={retrySentence} style={{ padding: "5px 10px", marginRight: "10px", backgroundColor: "#007bff", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
-            Retry
-          </button>
-          <button onClick={nextSentence} style={{ padding: "5px 10px", backgroundColor: "#666", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
-            Next
-          </button>
-        </div>
+      <p><strong>Practice this sentence:</strong></p>
+      <div className="evaluation-container">
+        <RenderEvaluatedText evaluationResult={evaluationResult} practiceSentence={currentPracticeSentence} />
       </div>
-
+      <p><strong>You said:</strong> {text}</p>
+      <div className="nav-buttons">
+        <button onClick={nextSentence} className="next-btn">Next</button>
+      </div>
+      <div>
+        <p><strong>Select Difficulty:</strong></p>
+        <button onClick={() => changeLevel("easy")} className="level-btn">Easy</button>
+        <button onClick={() => changeLevel("medium")} className="level-btn">Medium</button>
+        <button onClick={() => changeLevel("hard")} className="level-btn">Hard</button>
+      </div>
       <div>
         <p><strong>Full Transcribed Text:</strong></p>
-        <textarea
-          value={text}
-          readOnly
-          style={{
-            width: "100%",
-            height: "100px",
-            padding: "10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-            resize: "none",
-          }}
-        />
+        <textarea className="transcription-box" value={text} readOnly />
       </div>
     </div>
   );

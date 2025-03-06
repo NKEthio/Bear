@@ -1,0 +1,135 @@
+/* General Container */
+.speech-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f8ff; /* Light blue background */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Kid-friendly font */
+}
+
+/* Headings */
+.speech-container h2 {
+    color: #ff4500; /* Bright orange */
+    font-size: 32px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.speech-container p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Speech Buttons */
+.speech-buttons button {
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.start-btn {
+    background-color: #32cd32; /* Lime green */
+}
+
+.start-btn:hover {
+    background-color: #28a428;
+}
+
+.stop-btn {
+    background-color: #ff6347; /* Tomato red */
+}
+
+.stop-btn:hover {
+    background-color: #d83c26;
+}
+
+/* Navigation Buttons */
+.nav-buttons button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.prev-btn,
+.next-btn {
+    background-color: #666;
+    color: white;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+    background-color: #444;
+}
+
+.retry-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+.retry-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Evaluation Section */
+.evaluation-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 2px solid #ffd700; /* Yellow border */
+}
+
+/* Highlight Correct and Incorrect Words */
+.correct-word {
+    font-weight: bold;
+    color: green;
+}
+
+.incorrect-word {
+    font-weight: bold;
+    color: red;
+}
+
+/* Transcribed Text Area */
+.transcription-box {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+    font-size: 16px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .speech-container {
+        padding: 10px;
+    }
+
+    .speech-container h2 {
+        font-size: 24px;
+    }
+
+    .speech-container p {
+        font-size: 16px;
+    }
+
+    .speech-buttons button,
+    .nav-buttons button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}

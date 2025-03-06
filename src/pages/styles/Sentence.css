@@ -1,198 +1,195 @@
 /* Sentence.css */
 
 .sentence {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f0f8ff; /* Light blue - calming and fun */
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Kid-friendly font */
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 25px;
+  background-color: #f0f8ff; /* Light blue - calming and fun */
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Kid-friendly font */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Headings */
+.sentence h1 {
+  color: #ff4500; /* Bright orange */
+  font-size: 38px;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  animation: pop 0.8s ease-in-out;
+}
+
+.sentence h2 {
+  color: #32cd32; /* Lime green */
+  font-size: 30px;
+  margin: 20px 0 15px;
+  border-bottom: 3px solid #ffd700; /* Yellow underline */
+  padding-bottom: 7px;
+  transition: color 0.3s ease-in-out;
+}
+
+.sentence h2:hover {
+  color: #ff4500;
+}
+
+.sentence h3 {
+  color: #ff69b4; /* Hot pink */
+  font-size: 24px;
+  margin: 15px 0;
+}
+
+/* Paragraphs & text */
+.sentence p {
+  color: #444; /* Slightly lighter gray for readability */
+  font-size: 19px;
+  line-height: 1.6;
+  margin: 12px 0;
+}
+
+.sentence b {
+  color: #4682b4; /* Steel blue for emphasis */
+  font-weight: bold;
+}
+
+/* Sections */
+.sentence section {
+  margin: 25px 0;
+  padding: 20px;
+  background-color: #ffffff; /* White background */
+  border-radius: 12px;
+  border: 3px solid #ffd700; /* Yellow border */
+  transition: transform 0.2s ease-in-out;
+}
+
+.sentence section:hover {
+  transform: scale(1.02);
+}
+
+/* Type section */
+.sentence #typecontent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.sentence .typeContent {
+  padding: 12px;
+  background-color: #e6e6fa; /* Lavender */
+  border-radius: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.sentence .typeContent:hover {
+  transform: scale(1.05);
+  background-color: #d8bfd8; /* Deeper lavender */
+}
+
+/* Structure section */
+.sentence #sentstru {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sentence #sentstru li {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #fffacd; /* Light yellow */
+  border-radius: 7px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.sentence #sentstru li:hover {
+  background-color: #ffeb3b;
+}
+
+/* Parts of speech */
+.sentence ol {
+  padding-left: 20px;
+  color: #333;
+}
+
+.sentence ol li {
+  margin: 7px 0;
+  font-size: 18px;
+}
+
+/* Animated Hover Effects */
+.sentence .partsContent {
+  padding: 12px;
+  background-color: #f0fff0; /* Mint green */
+  border-radius: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.sentence .partsContent:hover {
+  transform: scale(1.05);
+  background-color: #98fb98; /* Brighter mint */
+}
+
+/* Highlighted examples */
+.sentence .exnoun { color: #ff4500; font-weight: bold; } /* Orange */
+.sentence .expron { color: #ff69b4; font-weight: bold; } /* Pink */
+.sentence .exadje { color: #32cd32; font-weight: bold; } /* Green */
+.sentence .exverb { color: #4682b4; font-weight: bold; } /* Blue */
+.sentence .exadve { color: #ff6347; font-weight: bold; } /* Red */
+.sentence .exprep { color: #ffd700; font-weight: bold; } /* Yellow */
+.sentence .exconj { color: #9400d3; font-weight: bold; } /* Purple */
+.sentence .exinte { color: #ff1493; font-weight: bold; } /* Deep pink */
+
+/* Fun Navigation Buttons */
+.sentence button {
+  padding: 12px 24px;
+  font-family: 'Comic Sans MS', 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #32cd32; /* Lime green */
+  border: none;
+  border-radius: 10px;
+  margin: 12px 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.sentence button:hover {
+  background-color: #ff6347; /* Tomato red */
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Fun Bounce Effect */
+@keyframes pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .sentence {
+      padding: 15px;
   }
-  
-  /* Headings */
+
   .sentence h1 {
-    color: #ff4500; /* Bright orange */
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      font-size: 30px;
   }
-  
+
   .sentence h2 {
-    color: #32cd32; /* Lime green */
-    font-size: 28px;
-    margin: 20px 0 10px;
-    border-bottom: 2px solid #ffd700; /* Yellow underline */
-    padding-bottom: 5px;
+      font-size: 24px;
   }
-  
+
   .sentence h3 {
-    color: #ff69b4; /* Hot pink */
-    font-size: 22px;
-    margin: 15px 0 10px;
+      font-size: 20px;
   }
-  
-  /* Paragraphs and text */
-  .sentence p {
-    color: #333333; /* Dark gray for readability */
-    font-size: 18px;
-    line-height: 1.5;
-    margin: 10px 0;
-  }
-  
-  .sentence b {
-    color: #4682b4; /* Steel blue for emphasis */
-    font-weight: bold;
-  }
-  
-  /* Sections */
-  .sentence section {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #ffffff; /* White background for sections */
-    border-radius: 10px;
-    border: 3px solid #ffd700; /* Yellow border */
-  }
-  
-  /* Definition section */
-  .sentence #definitionSentence p {
-    padding: 5px;
-  }
-  
-  /* Type section */
-  .sentence #typecontent {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-  }
-  
-  .sentence .typeContent {
-    padding: 10px;
-    background-color: #e6e6fa; /* Lavender */
-    border-radius: 8px;
-    transition: transform 0.2s ease;
-  }
-  
-  .sentence .typeContent:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Structure section */
-  .sentence #struSentence {
-    padding: 10px;
-  }
-  
-  .sentence #sentstru {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sentence #sentstru li {
-    margin: 10px 0;
-    padding: 8px;
-    background-color: #fffacd; /* Light yellow */
-    border-radius: 5px;
-  }
-  
-  .sentence .subject {
-    color: #32cd32; /* Green for subject */
-    font-weight: bold;
-  }
-  
-  .sentence .predicate {
-    color: #ff6347; /* Tomato red for predicate */
-    font-weight: bold;
-  }
-  
-  /* Parts of speech */
-  .sentence ol {
-    padding-left: 20px;
-    color: #333333;
-  }
-  
+
+  .sentence p,
   .sentence ol li {
-    margin: 5px 0;
-    font-size: 18px;
-  }
-  
-  .sentence .partCollection {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
-  }
-  
-  .sentence .partsContent {
-    padding: 10px;
-    background-color: #f0fff0; /* Mint green */
-    border-radius: 8px;
-    transition: transform 0.2s ease;
-  }
-  
-  .sentence .partsContent:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Highlighted examples */
-  .sentence .exnoun { color: #ff4500; font-weight: bold; } /* Orange for nouns */
-  .sentence .expron { color: #ff69b4; font-weight: bold; } /* Pink for pronouns */
-  .sentence .exadje { color: #32cd32; font-weight: bold; } /* Green for adjectives */
-  .sentence .exverb { color: #4682b4; font-weight: bold; } /* Blue for verbs */
-  .sentence .exadve { color: #ff6347; font-weight: bold; } /* Red for adverbs */
-  .sentence .exprep { color: #ffd700; font-weight: bold; } /* Yellow for prepositions */
-  .sentence .exconj { color: #9400d3; font-weight: bold; } /* Purple for conjunctions */
-  .sentence .exinte { color: #ff1493; font-weight: bold; } /* Deep pink for interjections */
-  
-  /* Navigation buttons */
-  .sentence button {
-    padding: 10px 20px;
-    font-family: 'Comic Sans MS', 'Arial', sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #32cd32; /* Lime green */
-    border: none;
-    border-radius: 8px;
-    margin: 10px 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .sentence button:hover {
-    background-color: #ff6347; /* Tomato red */
-    transform: scale(1.1);
-  }
-  
-  .sentence .normal-link {
-    text-decoration: none;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .sentence {
-      padding: 10px;
-    }
-  
-    .sentence h1 {
-      font-size: 28px;
-    }
-  
-    .sentence h2 {
-      font-size: 22px;
-    }
-  
-    .sentence h3 {
-      font-size: 18px;
-    }
-  
-    .sentence p,
-    .sentence ol li {
       font-size: 16px;
-    }
-  
-    .sentence #typecontent,
-    .sentence .partCollection {
-      grid-template-columns: 1fr;
-    }
   }
+
+  .sentence #typecontent,
+  .sentence .partCollection {
+      grid-template-columns: 1fr;
+  }
+}
