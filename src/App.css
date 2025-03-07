@@ -1,10 +1,11 @@
 @import "tailwindcss";
   /* Body styling for a soft base */
   body {
-    font-family: 'Poppins', sans-serif; /* Modern, friendly font */
-    background-color: #f9e4b7; /* Warm, light peach background */
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9e4b7;
     min-height: 100vh;
     width: 100%;
+    overflow-x: hidden; /* Prevent horizontal overflow */
   }
   
   /* Navigation bar */
@@ -12,35 +13,36 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(90deg, #ff6f61, #ffd700, #40c4ff); /* Coral, yellow, blue gradient */
+    background: linear-gradient(90deg, #ff6f61, #ffd700, #40c4ff);
     min-height: 10vh;
     width: 100%;
     position: sticky;
     top: 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    padding: 0 20px; /* Add fixed padding instead of percentage-based */
   }
   
   nav ul {
     width: 100%;
-    padding-left: 1%;
+    padding-left: 0; /* Remove percentage-based padding */
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     list-style: none;
     transition: all 0.3s ease;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
   }
   
   nav ul li {
     display: inline-block;
-    margin-right: 2%;
-    margin-left: 0%;
+    margin-right: 20px; /* Use fixed margin instead of percentage */
     position: relative;
   }
   
   nav ul li:last-child {
-    float: right;
+    margin-right: 0; /* Remove margin for the last item */
   }
   
   /* Link styling */
@@ -59,7 +61,7 @@
   }
   
   nav .normal-link:hover {
-    color: #ff1493; /* Bright pink */
+    color: #ff1493;
     background: #fff;
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -113,7 +115,7 @@
       top: 10vh;
       left: 0;
       width: 100%;
-      background: linear-gradient(180deg, #ff6f61, #ffd700, #40c4ff); /* Vertical gradient */
+      background: linear-gradient(180deg, #ff6f61, #ffd700, #40c4ff);
       padding: 20px 0;
       z-index: 1000;
     }
@@ -128,7 +130,7 @@
       margin: 10px auto;
       text-align: center;
       background: rgba(255, 255, 255, 0.2);
-      border: 3px dashed #ffeb3b; /* Yellow dashed border */
+      border: 3px dashed #ffeb3b;
       border-radius: 15px;
       transition: transform 0.3s ease;
     }

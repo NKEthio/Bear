@@ -77,12 +77,12 @@ const GreetingsLesson = () => {
       <img 
         src={greeting.image}
         alt={greeting.phrase}
-        className="w-200 h"
+        className="w-70 h-40"
       />
       <p className="  gap-2 text-4xl mb-8 text-center">{greeting.phrase}</p>
       <button
         onClick={() => playAudio(greeting.audio)}
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white py-4 rounded-xl flex items-center justify-center text-xl"
+        className="w-20 h-20 bg-blue-500 hover:bg-blue-600 text-brown  rounded-xl flex items-center justify-center text-2xl"
       >
         <FaPlay className="mr-3 text-2xl" /> Say It!
       </button>
@@ -94,10 +94,10 @@ const GreetingsLesson = () => {
           Sing Along! 🎵
         </h2>
 
-        <div className="bg-yellow-50 p-6 rounded-xl shadow-md">
+        <div className="bg-amber-300 p-6 rounded-xl shadow-md">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-xl font-bold mb-2">"Hello Song"</h3>
+              <h3 className="text-2xl bg-amber-300">Hello Song"</h3>
               <p className="text-gray-600">Hello, hello, how are you today? 🎶</p>
             </div>
             <button
