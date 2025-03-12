@@ -24,30 +24,7 @@ import AlphabetWords from './pages/alphabetWords/AlphabetWords';
 import Lesson1 from './pages/sentence/lesson1/Lesson1';
 import Feedback from './pages/feedback/Feedback';
 import Lesson1Game from './pages/sentence/lesson1/Lesson1Game';
-import Level1Week1 from './pages/Levels/Level1/Week1';
-// import Level1Week2 from './pages/Levels/Level1/Week2'; // Import other weeks similarly
-// import Level1Week3 from './pages/Levels/Level1/Week3';
-// import Level1Week4 from './pages/Levels/Level1/Week4';
-// import Level1Week5 from './pages/Levels/Level1/Week5';
-// import Level1Week6 from './pages/Levels/Level1/Week6';
-// import Level1Week7 from './pages/Levels/Level1/Week7';
-// import Level1Week8 from './pages/Levels/Level1/Week8';
-// import Level2Week1 from './pages/Levels/Level2/Week1';
-// import Level2Week2 from './pages/Levels/Level2/Week2'; // Import other weeks similarly
-// import Level2Week3 from './pages/Levels/Level2/Week3';
-// import Level2Week4 from './pages/Levels/Level2/Week4';
-// import Level2Week5 from './pages/Levels/Level2/Week5';
-// import Level2Week6 from './pages/Levels/Level2/Week6';
-// import Level2Week7 from './pages/Levels/Level2/Week7';
-// import Level2Week8 from './pages/Levels/Level2/Week8';
-// import Level3Week1 from './pages/Levels/Level3/Week1';
-// import Level3Week2 from './pages/Levels/Level3/Week2'; // Import other weeks similarly
-// import Level3Week3 from './pages/Levels/Level3/Week3';
-// import Level3Week4 from './pages/Levels/Level3/Week4';
-// import Level3Week5 from './pages/Levels/Level3/Week5';
-// import Level3Week6 from './pages/Levels/Level3/Week6';
-// import Level3Week7 from './pages/Levels/Level3/Week7';
-// import Level3Week8 from './pages/Levels/Level3/Week8';
+
 import './App.css';
 
 function App() {
@@ -72,36 +49,6 @@ function App() {
     return user ? children : <Navigate to="/login" />;
   };
 
-  // Array of routes for levels
-  const levelRoutes = [
-    // Level 1
-    { path: '/level1/week1', component: Level1Week1 },
-    // { path: '/level1/week2', component: Level1Week2 },
-    // { path: '/level1/week3', component: Level1Week3 },
-    // { path: '/level1/week4', component: Level1Week4 },
-    // { path: '/level1/week5', component: Level1Week5 },
-    // { path: '/level1/week6', component: Level1Week6 },
-    // { path: '/level1/week7', component: Level1Week7 },
-    // { path: '/level1/week8', component: Level1Week8 },
-    // // Level 2
-    // { path: '/level2/week1', component: Level2Week1 },
-    // { path: '/level2/week2', component: Level2Week2 },
-    // { path: '/level2/week3', component: Level2Week3 },
-    // { path: '/level2/week4', component: Level2Week4 },
-    // { path: '/level2/week5', component: Level2Week5 },
-    // { path: '/level2/week6', component: Level2Week6 },
-    // { path: '/level2/week7', component: Level2Week7 },
-    // { path: '/level2/week8', component: Level2Week8 },
-    // // Level 3
-    // { path: '/level3/week1', component: Level3Week1 },
-    // { path: '/level3/week2', component: Level3Week2 },
-    // { path: '/level3/week3', component: Level3Week3 },
-    // { path: '/level3/week4', component: Level3Week4 },
-    // { path: '/level3/week5', component: Level3Week5 },
-    // { path: '/level3/week6', component: Level3Week6 },
-    // { path: '/level3/week7', component: Level3Week7 },
-    // { path: '/level3/week8', component: Level3Week8 },
-  ];
 
   return (
     <Router>
@@ -158,15 +105,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/about" element={<About />} />
-
-        {/* Map over levelRoutes to generate routes */}
-        {levelRoutes.map((route, index) => (
-          <Route
-            key={index}
-            path={route.path}
-            element={<PrivateRoute><route.component /></PrivateRoute>}
-          />
-        ))}
       </Routes>
     </Router>
   );
