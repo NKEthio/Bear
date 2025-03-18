@@ -29,6 +29,7 @@ import Feedback from './pages/feedback/Feedback';
 import Lesson1Game from './pages/sentence/lesson1/Lesson1Game';
 
 import AmHome from './pages/AmHome';
+import Hahu from './pages/Amharic/hohiat/Hahu';
 
 import OromoHome from './pages/OromoHome';
 
@@ -168,6 +169,7 @@ function App() {
         <Route path="/about" element={<About />} />
 
         <Route path="/amHome" element={<AmHome />} />
+        <Route path="/hahu" element={<Hahu />} />
 
         <Route path="/ormoHome" element={<OromoHome />}/>
       </Routes>

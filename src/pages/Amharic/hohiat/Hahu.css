@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic&display=swap');
+
+.hahu-container {
+  background-color: #f0f8ff; /* Light pastel blue for a friendly feel */
+  width: 100%;
+  min-height: 100vh; /* Ensures it takes full viewport height if content is short */
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Noto Sans Ethiopic', sans-serif; /* Supports Amharic characters */
+}
+
+.hahu-container h1 {
+  text-align: center;
+  font-size: 2.5em; /* Large heading for prominence */
+  margin-bottom: 20px;
+  color: #333; /* Dark gray for readability */
+}
+
+.hahu-container .gebeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.hahu-container .gebeta div {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 equal columns for each row */
+  gap: 10px; /* Space between buttons */
+  margin-bottom: 10px; /* Space between rows */
+  width: 100%;
+  max-width: 800px; /* Limits width on large screens for readability */
+}
+
+.hahu-container .gebeta div button {
+  height: 60px; /* Larger buttons for easy interaction */
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px; /* Slightly rounded edges */
+  color: white; /* High contrast text */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Card-like effect */
+  transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+/* Alternating colors for odd and even rows */
+.hahu-container .gebeta div:nth-child(odd) button {
+  background-color: #4caf50; /* Bright green */
+}
+
+.hahu-container .gebeta div:nth-child(even) button {
+  background-color: #2196f3; /* Bright blue */
+}
+
+/* Hover effect for interactivity */
+.hahu-container .gebeta div button:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hahu-container h1 {
+    font-size: 2em; /* Smaller heading on tablets */
+  }
+
+  .hahu-container .gebeta div button {
+    height: 40px; /* Smaller buttons */
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hahu-container h1 {
+    font-size: 1.5em; /* Even smaller on phones */
+  }
+
+  .hahu-container .gebeta div button {
+    height: 30px; /* Compact buttons */
+    font-size: 16px;
+  }
+}
