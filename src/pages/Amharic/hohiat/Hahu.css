@@ -48,11 +48,11 @@
 }
 
 .hahu-container .gebeta div:nth-child(odd) button {
-  background-color: #ffb6c1; /* Light pink */
+  background-color: #e9667a; /* Light pink */
 }
 
 .hahu-container .gebeta div:nth-child(even) button {
-  background-color: #87ceeb; /* Light sky blue */
+  background-color: #06b0f3; /* Light sky blue */
 }
 
 .hahu-container .gebeta div button:hover {
@@ -90,7 +90,13 @@
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.numbers-section .number-row:nth-child(odd) button {
   background-color: #ff9800; /* Bright orange */
+}
+
+.numbers-section .number-row:nth-child(even) button {
+  background-color: #ff4800;
 }
 
 .hahu-container .numbers-section .number-row button:hover {

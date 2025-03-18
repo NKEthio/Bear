@@ -18,7 +18,7 @@ const Home = () => {
       </div>
 
       <div className="character-container">
-        <img src="https://via.placeholder.com/150?text=Happy+Star" alt="Happy Star" className="character" />
+        <img src="https://img.freepik.com/premium-vector/star-character_1007853-1461.jpg?ga=GA1.1.1730144561.1742235398&semt=ais_hybrid" alt="Happy Star" className="character" />
       </div>
 
       <div className="clouds">

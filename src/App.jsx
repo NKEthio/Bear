@@ -100,7 +100,7 @@ function App() {
     } else if (lang === "oromo") {
       return (
         <>
-        <li><Link to="/ormoHome" className='normal-link'>Manna</Link></li>
+        <li><Link to="/ormoHome" className='normal-link'>Mana</Link></li>
           {user ? (
             <>
               <li><Link to="/dashboard" className="normal-link">Daashboordii</Link></li>
@@ -136,7 +136,7 @@ function App() {
           </li>
           
           {renderNavigation()}
-            
+          <li><Link to={'/'} className='normal-link'>Root</Link></li>
           </ul>
       </nav>
 
