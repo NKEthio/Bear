@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic&display=swap');
 
 .hahu-container {
-  background-color: #f0f8ff; /* Light pastel blue for a friendly feel */
+  background-color: #f0f8ff;
   width: 100%;
-  min-height: 100vh; /* Ensures it takes full viewport height if content is short */
-  padding: 20px;
+  min-height: 100vh;
+  padding: 30px;
   box-sizing: border-box;
-  font-family: 'Noto Sans Ethiopic', sans-serif; /* Supports Amharic characters */
+  font-family: 'Noto Sans Ethiopic', Arial, sans-serif;
 }
 
 .hahu-container h1 {
   text-align: center;
-  font-size: 2.5em; /* Large heading for prominence */
+  font-size: 2.5em;
   margin-bottom: 20px;
-  color: #333; /* Dark gray for readability */
+  color: #333;
 }
 
 .hahu-container .gebeta {
@@ -25,62 +25,109 @@
 
 .hahu-container .gebeta div {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 equal columns for each row */
-  gap: 10px; /* Space between buttons */
-  margin-bottom: 10px; /* Space between rows */
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
   width: 100%;
-  max-width: 800px; /* Limits width on large screens for readability */
+  max-width: 800px;
 }
 
 .hahu-container .gebeta div button {
-  height: 60px; /* Larger buttons for easy interaction */
+  height: 60px;
   font-size: 24px;
   font-weight: bold;
   border: none;
-  border-radius: 5px; /* Slightly rounded edges */
-  color: white; /* High contrast text */
+  border-radius: 5px;
+  color: white;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Card-like effect */
-  transition: all 0.3s ease; /* Smooth hover effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Alternating colors for odd and even rows */
 .hahu-container .gebeta div:nth-child(odd) button {
-  background-color: #4caf50; /* Bright green */
+  background-color: #ffb6c1; /* Light pink */
 }
 
 .hahu-container .gebeta div:nth-child(even) button {
-  background-color: #2196f3; /* Bright blue */
+  background-color: #87ceeb; /* Light sky blue */
 }
 
-/* Hover effect for interactivity */
 .hahu-container .gebeta div button:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
-  transform: translateY(-2px); /* Slight lift effect */
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive adjustments */
+.hahu-container .numbers-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.hahu-container .numbers-section .number-row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.hahu-container .numbers-section .number-row button {
+  height: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ff9800; /* Bright orange */
+}
+
+.hahu-container .numbers-section .number-row button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 768px) {
   .hahu-container h1 {
-    font-size: 2em; /* Smaller heading on tablets */
+    font-size: 2em;
   }
-
-  .hahu-container .gebeta div button {
-    height: 40px; /* Smaller buttons */
+  .hahu-container .gebeta div {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .hahu-container .numbers-section .number-row {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .hahu-container .gebeta div button,
+  .hahu-container .numbers-section .number-row button {
+    height: 40px;
     font-size: 18px;
   }
 }
 
 @media (max-width: 480px) {
   .hahu-container h1 {
-    font-size: 1.5em; /* Even smaller on phones */
+    font-size: 1.5em;
   }
-
-  .hahu-container .gebeta div button {
-    height: 30px; /* Compact buttons */
+  .hahu-container .gebeta div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hahu-container .numbers-section .number-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hahu-container .gebeta div button,
+  .hahu-container .numbers-section .number-row button {
+    height: 30px;
     font-size: 16px;
   }
 }
