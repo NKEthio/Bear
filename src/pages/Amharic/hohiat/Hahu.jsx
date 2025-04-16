@@ -1,5 +1,6 @@
 import './Hahu.css';
 
+
 export default function Hahu() {
   
   const alphabetRows = [
@@ -81,6 +82,10 @@ export default function Hahu() {
             ))}
           </div>
         ))}
+      </div>
+
+      <div className="jump-game">
+
       </div>
     </div>
   );

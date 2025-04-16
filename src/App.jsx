@@ -30,6 +30,7 @@ import Lesson1Game from './pages/sentence/lesson1/Lesson1Game';
 
 import AmHome from './pages/AmHome';
 import Hahu from './pages/Amharic/hohiat/Hahu';
+import Qalat from './pages/Amharic/qalat/Qalat';
 
 import OromoHome from './pages/OromoHome';
 
@@ -170,6 +171,7 @@ function App() {
 
         <Route path="/amHome" element={<AmHome />} />
         <Route path="/hahu" element={<Hahu />} />
+        <Route path={"/qalat"} element={<Qalat />} />
 
         <Route path="/ormoHome" element={<OromoHome />}/>
       </Routes>
