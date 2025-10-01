@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { auth, db } from "../../../../firebase"; // Adjust path
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import "./Lesson1Game1.css"; // Import the stylesheet
 
-const Lesson1Game1 = () => {
-    const wordsAndImages = [
-        { word: "I", image: "I.JPG" },
-        { word: "Eat", image: "Eat.JPG" },
-        { word: "Pizza", image: "Pizza.JPG" },
-        { word: "Dog", image: "Dog.JPG" },
-        { word: "Sees", image: "Sees.JPG" },
-        { word: "Bone", image: "Bone.JPG" },
-        { word: "Cat", image: "Cat.JPG" },
-        { word: "Likes", image: "Likes.JPG" },
-        { word: "Toy", image: "Toy.JPG" },
-        { word: "Boy", image: "Boy.JPG" },
-        { word: "Holds", image: "Holds.JPG" },
-        { word: "Ball", image: "Ball.JPG" },
-        { word: "Girl", image: "Girl.JPG" },
-        { word: "Draws", image: "Draws.JPG" },
-        { word: "Star", image: "Star.JPG" },
-    ];
+const wordsAndImages = [
+    { word: "I", image: "I.JPG" },
+    { word: "Eat", image: "Eat.JPG" },
+    { word: "Pizza", image: "Pizza.JPG" },
+    { word: "Dog", image: "Dog.JPG" },
+    { word: "Sees", image: "Sees.JPG" },
+    { word: "Bone", image: "Bone.JPG" },
+    { word: "Cat", image: "Cat.JPG" },
+    { word: "Likes", image: "Likes.JPG" },
+    { word: "Toy", image: "Toy.JPG" },
+    { word: "Boy", image: "Boy.JPG" },
+    { word: "Holds", image: "Holds.JPG" },
+    { word: "Ball", image: "Ball.JPG" },
+    { word: "Girl", image: "Girl.JPG" },
+    { word: "Draws", image: "Draws.JPG" },
+    { word: "Star", image: "Star.JPG" },
+];
 
+const Lesson1Game1 = () => {
     const [currentWord, setCurrentWord] = useState("");
     const [choices, setChoices] = useState([]);
     const [answer, setAnswer] = useState(null);
@@ -38,7 +38,7 @@ const Lesson1Game1 = () => {
     }, []);
 
     // Save score to Firestore when game ends
-    const saveScore = async () => {
+    const saveScore = useCallback(async () => {
         if (!user) return;
         try {
             const userRef = doc(db, "users", user.uid);
@@ -51,7 +51,7 @@ const Lesson1Game1 = () => {
         } catch (err) {
             console.error("Error saving score:", err);
         }
-    };
+    }, [user, score]);
 
     // Run saveScore when the component unmounts (user leaves the page)
     useEffect(() => {
@@ -59,23 +59,21 @@ const Lesson1Game1 = () => {
             // Cleanup function runs on unmount
             saveScore();
         };
-    }, [user, score]); // Dependencies: run when user or score changes
+    }, [saveScore]);
 
-    const getImagePath = (word) => `/lesson1/${word}.JPG`;
-
-    const askQuestion = () => {
+    const askQuestion = useCallback(() => {
         setFeedback("");
         const randomWordObj = wordsAndImages[Math.floor(Math.random() * wordsAndImages.length)];
         const randomWord = randomWordObj.word;
         setCurrentWord(randomWord);
 
-        const correctImagePath = getImagePath(randomWord);
+        const correctImagePath = `/lesson1/${randomWord}.JPG`;
         setAnswer(correctImagePath);
 
         const incorrectChoices = [];
         while (incorrectChoices.length < 3) {
             const randomWordObj = wordsAndImages[Math.floor(Math.random() * wordsAndImages.length)];
-            const randomImagePath = getImagePath(randomWordObj.word);
+            const randomImagePath = `/lesson1/${randomWordObj.word}.JPG`;
 
             if (randomImagePath !== correctImagePath && !incorrectChoices.includes(randomImagePath)) {
                 incorrectChoices.push(randomImagePath);
@@ -85,7 +83,7 @@ const Lesson1Game1 = () => {
         const allChoices = [correctImagePath, ...incorrectChoices];
         allChoices.sort(() => Math.random() - 0.5);
         setChoices(allChoices);
-    };
+    }, []);
 
     const checkAnswer = (selectedImagePath) => {
         if (selectedImagePath === answer) {
@@ -99,7 +97,7 @@ const Lesson1Game1 = () => {
 
     useEffect(() => {
         askQuestion();
-    }, []);
+    }, [askQuestion]);
 
     return (
         <div className="lesson1-game1">

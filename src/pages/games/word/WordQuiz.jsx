@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { auth, db } from "../../../firebase";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import "../../styles/wordQuiz.css";
 
+const categories = {
+    animals: ["Cat", "Dog", "Goat", "Hen", "Elephant"],
+    food: ["Bread", "Butter", "Cheese", "Pizza", "Sandwich", "Pasta"],
+    cloths: ["Belt", "Cap", "Dress", "Jacket", "Gloves"],
+    home: ["Bed", "Box", "Cup", "Plate", "Chair"],
+    colors: ["Red", "Blue", "Green", "Yellow", "Purple"],
+    time: ["Clock", "Calendar", "Watch", "Hourglass", "Sundial"]
+};
+
+const levels = {
+    beginner: { choices: 3, points: 1 },
+    intermediate: { choices: 4, points: 2 },
+    advanced: { choices: 5, points: 3 }
+};
+
 export default function WordQuiz() {
-    const categories = {
-        animals: ["Cat", "Dog", "Goat", "Hen", "Elephant"],
-        food: ["Bread", "Butter", "Cheese", "Pizza", "Sandwich", "Pasta"],
-        cloths: ["Belt", "Cap", "Dress", "Jacket", "Gloves"],
-        home: ["Bed", "Box", "Cup", "Plate", "Chair"],
-        colors: ["Red", "Blue", "Green", "Yellow", "Purple"],
-        time: ["Clock", "Calendar", "Watch", "Hourglass", "Sundial"]
-    };
-
-    const levels = {
-        beginner: { choices: 3, points: 1 },
-        intermediate: { choices: 4, points: 2 },
-        advanced: { choices: 5, points: 3 }
-    };
-
     const [level, setLevel] = useState("beginner");
     const [currentWord, setCurrentWord] = useState();
     const [choices, setChoices] = useState([]);
@@ -36,38 +36,7 @@ export default function WordQuiz() {
         return () => unsubscribe();
     }, []);
 
-    useEffect(() => {
-        if (gameStarted && timeLeft > 0) {
-            const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-            return () => clearTimeout(timer);
-        } else if (gameStarted && timeLeft === 0) {
-            setFeedback("Time's up! Try again.");
-            setTimeout(() => askQuestion(), 1500);
-        }
-    }, [timeLeft, gameStarted]);
-
-    const saveScore = async () => {
-        if (!user) return;
-        try {
-            const userRef = doc(db, "users", user.uid);
-            const userDoc = await getDoc(userRef);
-            const currentScore = userDoc.exists() ? userDoc.data().score || 0 : 0;
-            await updateDoc(userRef, {
-                score: currentScore + score,
-                lastUpdated: new Date().toISOString(),
-            });
-        } catch (err) {
-            console.error("Error saving score:", err);
-        }
-    };
-
-    useEffect(() => {
-        return () => {
-            saveScore();
-        };
-    }, [user, score]);
-
-    const askQuestion = () => {
+    const askQuestion = useCallback(() => {
         setFeedback("");
         setTimeLeft(10);
 
@@ -96,7 +65,38 @@ export default function WordQuiz() {
         setChoices(allChoices);
 
         speakWord(randomWord);
-    };
+    }, [level]);
+
+    useEffect(() => {
+        if (gameStarted && timeLeft > 0) {
+            const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+            return () => clearTimeout(timer);
+        } else if (gameStarted && timeLeft === 0) {
+            setFeedback("Time's up! Try again.");
+            setTimeout(() => askQuestion(), 1500);
+        }
+    }, [timeLeft, gameStarted, askQuestion]);
+
+    const saveScore = useCallback(async () => {
+        if (!user) return;
+        try {
+            const userRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userRef);
+            const currentScore = userDoc.exists() ? userDoc.data().score || 0 : 0;
+            await updateDoc(userRef, {
+                score: currentScore + score,
+                lastUpdated: new Date().toISOString(),
+            });
+        } catch (err) {
+            console.error("Error saving score:", err);
+        }
+    }, [user, score]);
+
+    useEffect(() => {
+        return () => {
+            saveScore();
+        };
+    }, [saveScore]);
 
     const speakWord = (word) => {
         const speech = new SpeechSynthesisUtterance(word);

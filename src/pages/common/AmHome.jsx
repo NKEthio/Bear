@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "./AmHome.css";
+import "../AmHome.css";
 
 export default function AmHome() {
 

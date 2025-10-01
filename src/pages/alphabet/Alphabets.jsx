@@ -153,7 +153,7 @@ export default function Alphabets() {
             </div>
 
             <h2>Small Letters</h2>
-            <div class="alphabets" id="smls">
+            <div className="alphabets" id="smls">
                 <button onClick={() => playSound(audioRefA)}>a</button>
                 <button onClick={() => playSound(audioRefB)}>b</button>
                 <button onClick={() => playSound(audioRefC)}>c</button>
@@ -183,7 +183,7 @@ export default function Alphabets() {
             </div>
 
             <h2>Numbers</h2>
-            <div class="numbers" id="nums">
+            <div className="numbers" id="nums">
                 <button onClick={() => playSound(audioRefOne)}>1</button>
                 <button onClick={() => playSound(audioRefTwo)}>2</button>
                 <button onClick={() => playSound(audioRefThree)}>3</button>

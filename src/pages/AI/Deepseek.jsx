@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function DeepSeekComponent() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const API_KEY = "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";
+  const API_KEY = import.meta.env.VITE_AI_API_KEY;
 
   const handleSubmit = async (event) => {
     event.preventDefault();

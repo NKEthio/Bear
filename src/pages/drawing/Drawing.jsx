@@ -1,5 +1,5 @@
 // App.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DrawingCanvas from './components/DrawingCanvas';
 import LetterDisplay from './components/LetterDisplay';
 import Feedback from './components/Feedback';

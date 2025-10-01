@@ -5,7 +5,7 @@ import AlphabetImage from "../assets/Alphabet.JPG";
 import WordImage from "../assets/Word.JPG";
 import SentenceImage from "../assets/Sentence.JPG";
 import GrammarImage from "../assets/Grammar.JPG";
-import GameImage from '../assets/Games.JPG';
+import GameImage from '../assets/Games.jpg';
 
 import "./styles/EngHome.css";
 export default function Lessons() {

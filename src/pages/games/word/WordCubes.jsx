@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import '../../styles/WordCubes.css';
 
@@ -13,15 +13,6 @@ const categories = {
 };
 
 const WordCubes = ({ category = 'animals' }) => {
-  // Define base cube faces (we'll override this based on the target word)
-  const baseCubeFaces = [
-    ['A', 'B', 'C', 'D', 'E', 'F'],
-    ['G', 'H', 'I', 'J', 'K', 'L'],
-    ['M', 'N', 'O', 'P', 'Q', 'R'],
-    ['S', 'T', 'U', 'V', 'W', 'X'],
-    ['Y', 'Z', 'A', 'B', 'C', 'D'],
-  ];
-
   // State management
   const [cubes, setCubes] = useState([]);
   const [targetWord, setTargetWord] = useState('');
@@ -83,7 +74,7 @@ const WordCubes = ({ category = 'animals' }) => {
   }, [initializeGame]);
 
   // Handle cube rotation (ensure independence)
-  const rotateCube = (cubeIndex) => {
+  const rotateCube = useCallback((cubeIndex) => {
     console.log('Rotating cube at index:', cubeIndex);
     setCubes(prevCubes => {
       if (!prevCubes || prevCubes.length === 0) {
@@ -95,41 +86,30 @@ const WordCubes = ({ category = 'animals' }) => {
         ...newCubes[cubeIndex],
         face: (newCubes[cubeIndex].face + 1) % 6, // Only update the targeted cube
       };
-      updateCurrentWord();
       console.log('New cubes after rotation:', newCubes);
       return newCubes;
     });
-  };
+  }, []);
 
-  // Update current word based on cube positions
-  const updateCurrentWord = () => {
-    if (!cubes || cubes.length === 0) {
-      console.error('No cubes to update current word');
-      return;
-    }
-    const newWord = cubes.map(cube => cube.letters[cube.face]).join('');
-    console.log('Updated current word:', newWord);
+  useEffect(() => {
+    if (!gameStarted || !cubes || cubes.length === 0) return;
+
+    const newWord = cubes.map((cube) => cube.letters[cube.face]).join('');
     setCurrentWord(newWord);
-    checkWord(newWord);
-  };
 
-  // Check if current word matches target
-  const checkWord = (word) => {
-    console.log('Checking word:', word, 'against target:', targetWord);
-    if (word === targetWord) {
+    if (newWord === targetWord) {
       setIsCorrect(true);
-      setScore(prevScore => prevScore + 1);
+      setScore((prevScore) => prevScore + 1);
       setTimeout(() => {
-        console.log('Word correct, reinitializing game...');
         initializeGame();
-      }, 1000); // New word after 1 second
+      }, 1000);
     } else {
       setIsCorrect(false);
     }
-  };
+  }, [cubes, gameStarted, targetWord, initializeGame]);
 
   // Handle keyboard input for accessibility
-  const handleKeyPress = (event) => {
+  const handleKeyPress = useCallback((event) => {
     if (!gameStarted) {
       console.log('Game not started, ignoring key press');
       return;
@@ -143,7 +123,7 @@ const WordCubes = ({ category = 'animals' }) => {
     } else {
       console.log('No cube found for key:', key);
     }
-  };
+  }, [gameStarted, cubes, rotateCube]);
 
   useEffect(() => {
     console.log('Adding keydown listener');
@@ -152,7 +132,7 @@ const WordCubes = ({ category = 'animals' }) => {
       console.log('Removing keydown listener');
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [gameStarted, cubes]);
+  }, [handleKeyPress]);
 
   // Generate image path for the target word
   const imagePath = getImagePath(category, targetWord.toLowerCase()) || ''; // Use getImagePath function

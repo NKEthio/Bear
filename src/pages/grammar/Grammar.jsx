@@ -50,11 +50,11 @@ function Grammar() {
             </p>
             <p>There are three main tenses</p>
             <ul>
-              <li>Present: "The study <em>explains</em> the phenomenon."</li>
-              <li>Past: "The experiment <em>showed</em> clear results."</li>
-              <li>Future: "Researchers <em>will investigate</em> further."</li>
+              <li>Present: &quot;The study <em>explains</em> the phenomenon.&quot;</li>
+              <li>Past: &quot;The experiment <em>showed</em> clear results.&quot;</li>
+              <li>Future: &quot;Researchers <em>will investigate</em> further.&quot;</li>
             </ul>
-            <p>Let's dive in</p>
+            <p>Let&apos;s dive in</p>
             <h4>Present Tense (happening now)</h4>
             <p>Present tense is for things that are happening right now or are always true. It’s like a snapshot of the present moment. For example, “The sun shines” or “She reads books.”</p>
             <ol>

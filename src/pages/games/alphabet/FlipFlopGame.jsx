@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../../styles/FlipFlopGame.css";
 import backOfCardImage from '../../../assets/Images/BackOfCard.png';
 

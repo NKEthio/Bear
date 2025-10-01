@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { db } from '../../firebase'; // Adjust path to your firebase.js
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 import './Feedback.css'; // We'll create this next
@@ -93,7 +93,7 @@ const Feedback = () => {
             .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)) // Sort by newest first
             .map((feedback) => (
               <div key={feedback.id} className="feedback-card">
-                <p className="feedback-text">"{feedback.text}"</p>
+                <p className="feedback-text">&quot;{feedback.text}&quot;</p>
                 <div className="feedback-rating">
                   {renderStars(feedback.rating)}
                 </div>
