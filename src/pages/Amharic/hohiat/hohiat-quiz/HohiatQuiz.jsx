@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { auth, db } from "../../../firebase"; // Adjust path
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import '../../styles/AlphabetQuiz.css';
@@ -40,7 +40,7 @@ import soundEight from '../../../assets/alphabets/Eight.wav';
 import soundNine from '../../../assets/alphabets/Nine.wav';
 
 export default function AlphabetQuiz() {
-  const [questions, setQuestions] = useState([
+  const [questions] = useState([
     [
       [new Audio(soundA), 'A'], [new Audio(soundB), 'B'], [new Audio(soundC), 'C'], [new Audio(soundD), 'D'],
       [new Audio(soundE), 'E'], [new Audio(soundF), 'F'], [new Audio(soundG), 'G'], [new Audio(soundH), 'H'],
@@ -57,7 +57,7 @@ export default function AlphabetQuiz() {
     ]
   ]);
 
-  const [currentQuestion, setCurrentQuestion] = useState(null);
+  const [, setCurrentQuestion] = useState(null);
   const [choices, setChoices] = useState([]);
   const [score, setScore] = useState(0);
   const [answer, setAnswer] = useState(null);
@@ -68,7 +68,7 @@ export default function AlphabetQuiz() {
   const [user, setUser] = useState(null);
 
 
-  const playSound = (audio) => {
+  const playSound = useCallback((audio) => {
     if (audio && !isPlaying) {
       setIsPlaying(true);
       audio.play();
@@ -77,7 +77,7 @@ export default function AlphabetQuiz() {
         setIsPlaying(false);
       };
     }
-  };
+  }, [isPlaying]);
   
     // Get current user
     useEffect(() => {
@@ -89,7 +89,7 @@ export default function AlphabetQuiz() {
   
 
     // Save score to Firestore when game ends
-    const saveScore = async () => {
+    const saveScore = useCallback(async () => {
       if (!user) return;
       try {
         const userRef = doc(db, "users", user.uid);
@@ -102,7 +102,7 @@ export default function AlphabetQuiz() {
       } catch (err) {
         console.error("Error saving score:", err);
       }
-    };
+    }, [user, score]);
 
     // Run saveScore when the component unmounts (user leaves the page)
     useEffect(() => {
@@ -110,10 +110,10 @@ export default function AlphabetQuiz() {
         // Cleanup function runs on unmount
         saveScore();
       };
-    }, [user, score]); // Dependencies: run when user or score changes
+    }, [saveScore]);
   
 
-  const askQuestion = () => {
+  const askQuestion = useCallback(() => {
     let randomQuestionSet;
     if (setAlphabet) {
       randomQuestionSet = questions[0];
@@ -145,7 +145,7 @@ export default function AlphabetQuiz() {
     setChoices(choices);
     setAnswer(correctAnswer);
     playSound(question[0]);
-  };
+  }, [questions, setAlphabet, setNumber, playSound, setCurrentQuestion, setChoices, setAnswer]);
 
   const checkAnswer = (choice) => {
     if (choice === answer) {
@@ -158,7 +158,7 @@ export default function AlphabetQuiz() {
 
   useEffect(() => {
     if(Start) {askQuestion()};
-  }, [Start, setAlphabet, setNumber]);
+  }, [Start, askQuestion]);
 
   return (
     <div className='whole-quiz'>

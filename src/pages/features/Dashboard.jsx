@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import { auth, db } from "../firebase"; // Adjust path
+import { db } from "../../firebase"; // Adjust path
 import { collection, getDocs } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
-import "./styles/Dashboard.css"; // We’ll create this next
+import "../styles/Dashboard.css"; // We’ll create this next
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   // Fetch and sort users by score
   useEffect(() => {

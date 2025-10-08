@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { auth, db } from "../../../../firebase"; // Adjust path
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import "./Lesson1Game3.css"; // Import the stylesheet
 
-const Lesson1Game3 = () => {
-    const lessons = [
-        { oldWord: "I", newWord: "Eat", action: "Pizza", sentence: "I Eat Pizza" },
-        { oldWord: "Dog", newWord: "Sees", action: "Bone", sentence: "Dog Sees Bone" },
-        { oldWord: "Cat", newWord: "Likes", action: "Toy", sentence: "Cat Likes Toy" },
-        { oldWord: "Boy", newWord: "Holds", action: "Ball", sentence: "Boy Holds Ball" },
-        { oldWord: "Girl", newWord: "Draws", action: "Star", sentence: "Girl Draws Star" },
-    ];
+const lessons = [
+    { oldWord: "I", newWord: "Eat", action: "Pizza", sentence: "I Eat Pizza" },
+    { oldWord: "Dog", newWord: "Sees", action: "Bone", sentence: "Dog Sees Bone" },
+    { oldWord: "Cat", newWord: "Likes", action: "Toy", sentence: "Cat Likes Toy" },
+    { oldWord: "Boy", newWord: "Holds", action: "Ball", sentence: "Boy Holds Ball" },
+    { oldWord: "Girl", newWord: "Draws", action: "Star", sentence: "Girl Draws Star" },
+];
 
+const Lesson1Game3 = () => {
     const [currentLesson, setCurrentLesson] = useState(null);
     const [shuffledWords, setShuffledWords] = useState([]);
     const [droppedWords, setDroppedWords] = useState([]);
@@ -28,7 +28,7 @@ const Lesson1Game3 = () => {
     }, []);
 
     // Save score to Firestore when game ends
-    const saveScore = async () => {
+    const saveScore = useCallback(async () => {
         if (!user) return;
         try {
             const userRef = doc(db, "users", user.uid);
@@ -41,7 +41,7 @@ const Lesson1Game3 = () => {
         } catch (err) {
             console.error("Error saving score:", err);
         }
-    };
+    }, [user, score]);
 
     // Run saveScore when the component unmounts (user leaves the page)
     useEffect(() => {
@@ -49,9 +49,9 @@ const Lesson1Game3 = () => {
             // Cleanup function runs on unmount
             saveScore();
         };
-    }, [user, score]); // Dependencies: run when user or score changes
+    }, [saveScore]);
 
-    const startNewRound = () => {
+    const startNewRound = useCallback(() => {
         const randomLesson = lessons[Math.floor(Math.random() * lessons.length)];
         setCurrentLesson(randomLesson);
 
@@ -60,7 +60,7 @@ const Lesson1Game3 = () => {
         setShuffledWords(shuffled);
         setDroppedWords([]);
         setFeedback("");
-    };
+    }, []);
 
     const handleDragStart = (e, word) => {
         e.dataTransfer.setData("text/plain", word);
@@ -89,7 +89,7 @@ const Lesson1Game3 = () => {
 
     useEffect(() => {
         startNewRound();
-    }, []);
+    }, [startNewRound]);
 
     return (
         <div className="lesson2-game3">

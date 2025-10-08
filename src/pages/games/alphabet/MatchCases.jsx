@@ -1,21 +1,22 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
+import PropTypes from "prop-types";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { auth, db } from "../../../firebase"; // Adjust path
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import '../../styles/MatchCase.css';
-function MatchUpperandLowerCase() {
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const initialPairs = alphabet.split("").map((letter) => ({
-    upper: letter,
-    lower: letter.toLowerCase(),
-    matched: false,
-  }));
 
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const initialPairs = alphabet.split("").map((letter) => ({
+  upper: letter,
+  lower: letter.toLowerCase(),
+  matched: false,
+}));
+
+function MatchUpperandLowerCase() {
   const [pairs, setPairs] = useState(initialPairs);
   const [currentSet, setCurrentSet] = useState([]);
   const [score, setScore] = useState(0);
-  const [draggedLetter, setDraggedLetter] = useState(null);
   const [round, setRound] = useState(1);
 
   const [user, setUser] = useState(null);
@@ -29,7 +30,7 @@ function MatchUpperandLowerCase() {
 
 
   // Save score to Firestore when game ends
-  const saveScore = async () => {
+  const saveScore = useCallback(async () => {
     if (!user) return;
     try {
       const userRef = doc(db, "users", user.uid);
@@ -42,7 +43,7 @@ function MatchUpperandLowerCase() {
     } catch (err) {
       console.error("Error saving score:", err);
     }
-  };
+  }, [user, score]);
 
   // Run saveScore when the component unmounts (user leaves the page)
   useEffect(() => {
@@ -50,12 +51,12 @@ function MatchUpperandLowerCase() {
       // Cleanup function runs on unmount
       saveScore();
     };
-  }, [user, score]); // Dependencies: run when user or score changes
+  }, [saveScore]);
 
 
   useEffect(() => {
     startNewRound();
-  }, []);
+  }, [startNewRound]);
 
   const startNewRound = useCallback(() => {
     const availablePairs = pairs.filter((pair) => !pair.matched);
@@ -97,8 +98,6 @@ function MatchUpperandLowerCase() {
             successfulMatch = true;
             return { ...pair, matched: true };
           } else {
-            setDraggedLetter(id);
-            setTimeout(() => setDraggedLetter(null), 1000);
             return pair;
           }
         }
@@ -146,6 +145,11 @@ function MatchUpperandLowerCase() {
     );
   };
 
+  DragLetter.propTypes = {
+    letter: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  };
+
   const DropZone = ({ letter }) => {
     const [{ isOver, canDrop }, drop] = useDrop({
       accept: "letter",
@@ -156,18 +160,21 @@ function MatchUpperandLowerCase() {
       }),
     });
 
-    const isActive = isOver && canDrop;
     const matchedPair = pairs.find((pair) => pair.upper === letter && pair.matched);
-    const backgroundColor = isActive ? "#ffafcc" : canDrop ? "#90e0ef" : "white";
 
     return (
       <div
         ref={drop}
         className="drops"
+        style={{ backgroundColor: isOver && canDrop ? "#ffafcc" : "white" }}
       >
         {matchedPair ? `${matchedPair.upper}${matchedPair.lower}` : letter}
       </div>
     );
+  };
+
+  DropZone.propTypes = {
+    letter: PropTypes.string.isRequired,
   };
 
   return (

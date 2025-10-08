@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from 'react-router-dom';
 import Game1 from "./components/Lesson1Game1"; // Import Game 1
 import Game2 from "./components/Lesson1Game2"; // Import Game 2

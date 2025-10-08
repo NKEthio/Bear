@@ -1,5 +1,6 @@
 // components/DrawingCanvas.js
-import React, { useRef, useEffect, useState} from 'react';
+import { useRef, useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 // import './DrawingCanvas.css';
 
 function DrawingCanvas({ setUserDrawing }) {
@@ -64,5 +65,9 @@ function DrawingCanvas({ setUserDrawing }) {
     </div>
   );
 }
+
+DrawingCanvas.propTypes = {
+  setUserDrawing: PropTypes.func.isRequired,
+};
 
 export default DrawingCanvas;

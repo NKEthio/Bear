@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile } from "firebase/auth";
-import { auth, db } from "../firebase"; // Adjust path
+import { auth, db } from "../../firebase"; // Adjust path
 import { useNavigate, Link } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore"; // Firestore functions
-import "./styles/Auth.css";
+import "../styles/Auth.css";
 
 function Signup() {
   const [email, setEmail] = useState("");

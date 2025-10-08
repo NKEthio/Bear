@@ -1,5 +1,5 @@
 // components/LetterDisplay.js
-import React from 'react';
+import PropTypes from 'prop-types';
 // import './LetterDisplay.css';
 
 function LetterDisplay({ letter }) {
@@ -10,5 +10,9 @@ function LetterDisplay({ letter }) {
     </div>
   );
 }
+
+LetterDisplay.propTypes = {
+  letter: PropTypes.string.isRequired,
+};
 
 export default LetterDisplay;

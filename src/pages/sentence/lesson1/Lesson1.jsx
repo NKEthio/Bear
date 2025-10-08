@@ -1,15 +1,6 @@
-// { oldWord: "Sun", newWord: "Has", action: "Light", sentence: "Sun Has Light" },
-        // { oldWord: "Cloud", newWord: "Makes", action: "Rain", sentence: "Cloud Makes Rain" },
-        // { oldWord: "Bird", newWord: "Sings", action: "Song", sentence: "Bird Sings Song" },
-        // { oldWord: "Fish", newWord: "Lives", action: "Water", sentence: "Fish Lives Water" },
-        // { oldWord: "Moon", newWord: "Shows", action: "Glow", sentence: "Moon Shows Glow" },
-        // { oldWord: "Cow", newWord: "Eats", action: "Grass", sentence: "Cow Eats Grass" },
-        // { oldWord: "Man", newWord: "Builds", action: "House", sentence: "Man Builds House" },
-        // { oldWord: "Baby", newWord: "Wants", action: "Milk", sentence: "Baby Wants Milk" },
-        // { oldWord: "Boat", newWord: "Uses", action: "Sail", sentence: "Boat Uses Sail" }
-        import React, { useRef } from 'react'; // Import useRef
-        import { Link } from 'react-router-dom';
-        import './Lesson1.css';
+import { useRef } from 'react'; // Import useRef
+import { Link } from 'react-router-dom';
+import './Lesson1.css';
         
         const getImagePath = (word) => `./lesson1/${word}.JPG`;
         const getAudioPath = (word) => `/Audios/${word}.mp3`;

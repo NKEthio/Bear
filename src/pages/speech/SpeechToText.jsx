@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import "./Speech.css";
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -45,7 +46,7 @@ function useSpeechTranscription(setText, setEvaluationResult, currentSentence) {
     return () => {
       recognition.stop();
     };
-  }, [currentSentence]);
+  }, [currentSentence, setText, setEvaluationResult]);
 }
 
 function evaluateSpeech(transcribedText, practiceSentence, setEvaluationResult) {
@@ -81,6 +82,17 @@ function RenderEvaluatedText({ evaluationResult, practiceSentence }) {
     </span>
   );
 }
+
+RenderEvaluatedText.propTypes = {
+  evaluationResult: PropTypes.arrayOf(
+    PropTypes.shape({
+      word: PropTypes.string.isRequired,
+      spoken: PropTypes.string.isRequired,
+      isCorrect: PropTypes.bool.isRequired,
+    })
+  ),
+  practiceSentence: PropTypes.string.isRequired,
+};
 
 export default function SpeechToText() {
   const [text, setText] = useState("");
