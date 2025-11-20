@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth, db } from "../../firebase"; // Adjust path
+import { auth } from "../../firebase"; // Adjust path
 import { useNavigate, Link } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore"; // Firestore functions
 import "../styles/Auth.css";
 
 function Login() {
