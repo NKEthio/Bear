@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, up
 import { auth, db } from "../../firebase"; // Adjust path
 import { useNavigate, Link } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore"; // Firestore functions
+import Confetti from "react-confetti";
 import "../styles/Auth.css";
 
 function Signup() {
@@ -10,6 +11,7 @@ function Signup() {
   const [username, setUsername] = useState(""); // New username field
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [showConfetti, setShowConfetti] = useState(false);
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
 
@@ -47,7 +49,10 @@ function Signup() {
         createdAt: new Date().toISOString(),
       });
 
-      navigate("/");
+      setShowConfetti(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 3000); // Redirect after 3 seconds
     } catch (err) {
       setError(getFriendlyErrorMessage(err.code));
     }
@@ -68,7 +73,10 @@ function Signup() {
         createdAt: new Date().toISOString(),
       });
 
-      navigate("/");
+      setShowConfetti(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 3000); // Redirect after 3 seconds
     } catch (err) {
       setError(getFriendlyErrorMessage(err.code));
     }
@@ -77,6 +85,7 @@ function Signup() {
 
   return (
     <div className="auth-container">
+      {showConfetti && <Confetti />}
       <h2>Sign Up</h2>
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSignup}>
