@@ -7,7 +7,6 @@ import "../styles/Auth.css";
 
 function Login() {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState(""); // New username field
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -30,25 +29,12 @@ function Login() {
     }
   };
 
-  // Handle Email/Password Login with Username Validation
+  // Handle Email/Password Login
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (!username) {
-      setError("Username is required.");
-      return;
-    }
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // Validate username against Firestore
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (userDoc.exists() && userDoc.data().username === username) {
-        navigate("/");
-      } else {
-        await auth.signOut(); // Sign out if username doesn’t match
-        setError("Incorrect username.");
-      }
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
     } catch (err) {
       setError(getFriendlyErrorMessage(err.code));
     }
@@ -74,13 +60,6 @@ function Login() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
           required
         />
         <input
