@@ -1,0 +1,26 @@
+.word-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.word-card:hover {
+  transform: translateY(-5px);
+}
+
+.word-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.word-card p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+}

@@ -1,0 +1,9 @@
+:root {
+  --primary-color: #3A75C4; /* Darker blue for better contrast */
+  --secondary-color: #f5a623;
+  --background-color: #f8f8f8;
+  --text-color: #333;
+  --font-family: 'Arial', sans-serif;
+  --header-font-size: 2rem;
+  --body-font-size: 1rem;
+}

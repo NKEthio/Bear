@@ -1,6 +1,6 @@
-import { useRef } from 'react';
-import '../styles/Alphabets.css';
 import { Link } from 'react-router-dom';
+import SoundButton from '../../components/SoundButton';
+import './Alphabets.css';
 
 import soundA from '../../assets/alphabets/A.wav';
 import soundB from '../../assets/alphabets/B.wav';
@@ -47,50 +47,48 @@ const numberSounds = {
   '1': soundOne, '2': soundTwo, '3': soundThree, '4': soundFour, '5': soundFive, '6': soundSix, '7': soundSeven, '8': soundEight, '9': soundNine
 };
 
+const Alphabets = () => {
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+  const numbers = "123456789".split('');
 
-export default function Alphabets() {
-    const audioRef = useRef(null);
+  return (
+    <main className="alphabets-container" role="main">
+      <h1>Learn the Alphabet</h1>
+      <p>Click on the letters and numbers to hear how they sound.</p>
 
-    const playSound = (soundSrc) => {
-        if (audioRef.current) {
-            audioRef.current.src = soundSrc;
-            audioRef.current.currentTime = 0;
-            audioRef.current.play();
-        }
-    }
-
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
-    const numbers = "123456789".split('');
-
-    return(
-        <div className='alphabet-container'>
-            <h1>Alphabets</h1>
-            <audio ref={audioRef} />
-            <h2>Capital Letters</h2>
-            <div className='alphabets' id='caps'>
-                {letters.map(letter => (
-                    <button key={letter} onClick={() => playSound(alphabetSounds[letter])}>{letter}</button>
-                ))}
-            </div>
-
-            <h2>Small Letters</h2>
-            <div className="alphabets" id="smls">
-                 {letters.map(letter => (
-                    <button key={letter.toLowerCase()} onClick={() => playSound(alphabetSounds[letter])}>{letter.toLowerCase()}</button>
-                ))}
-            </div>
-
-            <h2>Numbers</h2>
-            <div className="numbers" id="nums">
-                {numbers.map(number => (
-                    <button key={number} onClick={() => playSound(numberSounds[number])}>{number}</button>
-                ))}
-            </div>
-
-            <div>
-                <Link to='/' className='normal-link '> <button>Back</button> </Link>
-                <Link to='/games/alphabets' className='normal-link '> <button>Next</button> </Link>
-            </div>
+      <div className="section">
+        <h2>Capital Letters</h2>
+        <div className="grid-container">
+          {letters.map(letter => (
+            <SoundButton key={letter} sound={alphabetSounds[letter]} text={letter} />
+          ))}
         </div>
-    );
-}
+      </div>
+
+      <div className="section">
+        <h2>Small Letters</h2>
+        <div className="grid-container">
+          {letters.map(letter => (
+            <SoundButton key={letter.toLowerCase()} sound={alphabetSounds[letter]} text={letter.toLowerCase()} />
+          ))}
+        </div>
+      </div>
+
+      <div className="section">
+        <h2>Numbers</h2>
+        <div className="grid-container">
+          {numbers.map(number => (
+            <SoundButton key={number} sound={numberSounds[number]} text={number} />
+          ))}
+        </div>
+      </div>
+
+      <div className="navigation-buttons">
+        <Link to="/lessons" className="back-button">Back to Lessons</Link>
+        <Link to="/games/alphabets" className="next-button">Play a Game</Link>
+      </div>
+    </div>
+  );
+};
+
+export default Alphabets;

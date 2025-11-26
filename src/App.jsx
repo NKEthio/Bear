@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAuth } from './hooks/useAuth';
 
 import Home from './pages/common/Home';
 import EngHome from './pages/common/EngHome';
-import Lessons from './pages/Lessons';
+import Lessons from './pages/features/Lessons';
 import Alphabets from './pages/alphabet/Alphabets';
 import Words from './pages/word/Words';
 import Sentences from './pages/sentence/Sentences';
@@ -32,183 +32,53 @@ import Qalat from './pages/Amharic/qalat/Qalat';
 import OromoHome from './pages/common/OromoHome';
 
 import PrivateRoute from './components/PrivateRoute';
-import Navigation from './components/Navigation';
-import LanguageSwitcher from './components/LanguageSwitcher';
-
-import './App.css';
+import Header from './components/Header';
+import AnimatedRoute from './components/AnimatedRoute';
 
 function AnimatedRoutes() {
   const location = useLocation();
-  
-  const pageVariants = {
-    initial: { opacity: 0, x: -20 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: 20 }
-  };
-
-  const pageTransition = {
-    type: "tween",
-    duration: 0.3,
-    ease: "easeInOut"
-  };
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={
-          <motion.div
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={pageTransition}
-          >
-            <Home />
-          </motion.div>
-        } />
-        <Route path="/engHome" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <EngHome />
-          </motion.div>
-        } />
-        <Route path="/lessons" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <Lessons />
-          </motion.div>
-        } />
-        <Route path="/alphabets" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Alphabets /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/words" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Words /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/lesson1" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Lesson1 /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/sentences" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Sentences /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/grammar" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Grammar /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/speech" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Speech /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/drawing" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Drawing /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/feedback" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Feedback /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/alphabetWords" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><AlphabetWords /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/games" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Games /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/games/lesson1" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Lesson1Game /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/games/alphabets" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><AlphabetGame /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/games/words" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><WordGame /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/games/sentences" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><SentenceGame /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/games/grammar" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><GrammarGame /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/ai" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><AI /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/dashboard" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <PrivateRoute><Dashboard /></PrivateRoute>
-          </motion.div>
-        } />
-        <Route path="/login" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <Login />
-          </motion.div>
-        } />
-        <Route path="/signup" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <Signup />
-          </motion.div>
-        } />
-        <Route path="/about" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <About />
-          </motion.div>
-        } />
-        <Route path="/amHome" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <AmHome />
-          </motion.div>
-        } />
-        <Route path="/hahu" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <Hahu />
-          </motion.div>
-        } />
-        <Route path={"/qalat"} element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <Qalat />
-          </motion.div>
-        } />
-        <Route path="/ormoHome" element={
-          <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={pageTransition}>
-            <OromoHome />
-          </motion.div>
-        } />
+        <Route path="/" element={<AnimatedRoute><Home /></AnimatedRoute>} />
+        <Route path="/engHome" element={<AnimatedRoute><EngHome /></AnimatedRoute>} />
+        <Route path="/lessons" element={<AnimatedRoute><Lessons /></AnimatedRoute>} />
+        <Route path="/alphabets" element={<AnimatedRoute><PrivateRoute><Alphabets /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/words" element={<AnimatedRoute><PrivateRoute><Words /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/lesson1" element={<AnimatedRoute><PrivateRoute><Lesson1 /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/sentences" element={<AnimatedRoute><PrivateRoute><Sentences /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/grammar" element={<AnimatedRoute><PrivateRoute><Grammar /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/speech" element={<AnimatedRoute><PrivateRoute><Speech /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/drawing" element={<AnimatedRoute><PrivateRoute><Drawing /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/feedback" element={<AnimatedRoute><PrivateRoute><Feedback /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/alphabetWords" element={<AnimatedRoute><PrivateRoute><AlphabetWords /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/games" element={<AnimatedRoute><PrivateRoute><Games /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/games/lesson1" element={<AnimatedRoute><PrivateRoute><Lesson1Game /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/games/alphabets" element={<AnimatedRoute><PrivateRoute><AlphabetGame /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/games/words" element={<AnimatedRoute><PrivateRoute><WordGame /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/games/sentences" element={<AnimatedRoute><PrivateRoute><SentenceGame /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/games/grammar" element={<AnimatedRoute><PrivateRoute><GrammarGame /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/ai" element={<AnimatedRoute><PrivateRoute><AI /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/dashboard" element={<AnimatedRoute><PrivateRoute><Dashboard /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/login" element={<AnimatedRoute><Login /></AnimatedRoute>} />
+        <Route path="/signup" element={<AnimatedRoute><Signup /></AnimatedRoute>} />
+        <Route path="/about" element={<AnimatedRoute><About /></AnimatedRoute>} />
+        <Route path="/amHome" element={<AnimatedRoute><AmHome /></AnimatedRoute>} />
+        <Route path="/hahu" element={<AnimatedRoute><Hahu /></AnimatedRoute>} />
+        <Route path={"/qalat"} element={<AnimatedRoute><Qalat /></AnimatedRoute>} />
+        <Route path="/ormoHome" element={<AnimatedRoute><OromoHome /></AnimatedRoute>} />
       </Routes>
     </AnimatePresence>
   );
 }
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lang, setLang] = useState("english");
   const { loading } = useAuth();
 
   const handleLanguageChange = (language) => {
     setLang(language);
-    setIsMenuOpen(false);
   };
 
   if (loading) {
@@ -245,27 +115,7 @@ function App() {
 
   return (
     <Router>
-      <nav>
-        <motion.div 
-          className={`hamburger ${isMenuOpen ? 'open' : ''}`} 
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </motion.div>
-
-        <ul className={isMenuOpen ? 'open' : ''} onClick={() => setIsMenuOpen(false)}>
-          <LanguageSwitcher onLanguageChange={handleLanguageChange} />
-          <Navigation lang={lang} />
-          <motion.li whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link to={'/'} className='normal-link'>Root</Link>
-          </motion.li>
-        </ul>
-      </nav>
-
+      <Header lang={lang} onLanguageChange={handleLanguageChange} />
       <AnimatedRoutes />
     </Router>
   );

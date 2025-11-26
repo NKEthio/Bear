@@ -1,0 +1,53 @@
+.words-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.words-container h1 {
+  font-size: var(--header-font-size);
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+}
+
+.word-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.navigation-buttons button,
+.play-game-button,
+.abc-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navigation-buttons button:hover,
+.play-game-button:hover,
+.abc-button:hover {
+  background-color: #357abd;
+}
+
+.navigation-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .word-grid {
+    grid-template-columns: 1fr;
+  }
+}
