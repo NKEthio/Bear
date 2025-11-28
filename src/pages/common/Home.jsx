@@ -38,7 +38,7 @@ const Home = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
