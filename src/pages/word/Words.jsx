@@ -53,7 +53,7 @@ const Words = () => {
           </Link>
         )}
       </div>
-    </div>
+    </main>
   );
 };
 

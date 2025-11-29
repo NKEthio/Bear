@@ -87,7 +87,7 @@ const Alphabets = () => {
         <Link to="/lessons" className="back-button">Back to Lessons</Link>
         <Link to="/games/alphabets" className="next-button">Play a Game</Link>
       </div>
-    </div>
+    </main>
   );
 };
 

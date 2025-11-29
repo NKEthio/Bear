@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 
-import AlphabetImage from "../assets/Alphabet.JPG";
-import WordImage from "../assets/Word.JPG";
-import SentenceImage from "../assets/Sentence.JPG";
-import GrammarImage from "../assets/Grammar.JPG";
-import GameImage from '../assets/Games.jpg';
+import AlphabetImage from "../../assets/Alphabet.JPG";
+import WordImage from "../../assets/Word.JPG";
+import SentenceImage from "../../assets/Sentence.JPG";
+import GrammarImage from "../../assets/Grammar.JPG";
+import GameImage from '../../assets/Games.jpg';
 
-import "./styles/EngHome.css";
+import "../styles/EngHome.css";
 export default function Lessons() {
     const interactiveLogRef = useRef(null);
     return(
