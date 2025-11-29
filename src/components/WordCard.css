@@ -1,26 +1,167 @@
 .word-card {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  padding: 1.2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 4px solid transparent;
+}
+
+.word-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 60%
+  );
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.word-card:hover::before {
+  left: 100%;
 }
 
 .word-card:hover {
-  transform: translateY(-5px);
+  border-color: #ffd700;
+  box-shadow: 0 12px 35px rgba(255, 215, 0, 0.3);
+}
+
+.word-card.playing {
+  border-color: #32cd32;
+  animation: playPulse 0.5s ease;
+}
+
+@keyframes playPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.card-image-container {
+  position: relative;
+  display: inline-block;
 }
 
 .word-card img {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 1rem;
+  border-radius: 15px;
+  margin-bottom: 0.8rem;
+  border: 3px solid #e0e0e0;
+  transition: all 0.3s ease;
 }
 
-.word-card p {
-  font-size: 1.2rem;
-  color: var(--text-color);
+.word-card:hover img {
+  transform: scale(1.05);
+  border-color: #ffd700;
+}
+
+.play-icon {
+  position: absolute;
+  bottom: 15px;
+  right: -5px;
+  background: #32cd32;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 3px 10px rgba(50, 205, 50, 0.4);
+}
+
+.word-text {
+  font-size: 1.3rem;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.tap-hint {
+  font-size: 0.75rem;
+  color: #888;
+  display: block;
+}
+
+.sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: sparkleAnim 1s ease forwards;
+}
+
+.sparkle:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.sparkle:nth-child(2) {
+  top: 10%;
+  right: 15%;
+  animation-delay: 0.2s;
+}
+
+.sparkle:nth-child(3) {
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 0.1s;
+}
+
+@keyframes sparkleAnim {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .word-card {
+    padding: 1rem;
+  }
+
+  .word-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .word-text {
+    font-size: 1.1rem;
+  }
+
+  .play-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
 }
