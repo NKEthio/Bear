@@ -226,7 +226,7 @@ export default function SpellingBeeGame() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                Hint: {currentWord.length} letters, starts with &quot;{currentWord[0]}&quot;
+                Hint: {currentWord.length} letters, starts with &ldquo;{currentWord[0]}&rdquo;
               </motion.div>
             )}
           </div>

@@ -13,6 +13,21 @@ const categories = {
   home: ['Bed', 'Cup', 'Pot', 'Box'],
 };
 
+// Standalone function to avoid hook dependency issues
+const scrambleWord = (word, retryCount = 0) => {
+  const letters = word.toUpperCase().split('');
+  for (let i = letters.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [letters[i], letters[j]] = [letters[j], letters[i]];
+  }
+  // Make sure the scrambled word is different from the original
+  // Add retry limit to prevent infinite recursion for short/uniform words
+  if (letters.join('') === word.toUpperCase() && retryCount < 10) {
+    return scrambleWord(word, retryCount + 1);
+  }
+  return letters.join('');
+};
+
 export default function WordScrambleGame() {
   const [currentWord, setCurrentWord] = useState('');
   const [scrambledWord, setScrambledWord] = useState('');
@@ -32,19 +47,6 @@ export default function WordScrambleGame() {
     });
     return () => unsubscribe();
   }, []);
-
-  const scrambleWord = (word) => {
-    const letters = word.toUpperCase().split('');
-    for (let i = letters.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [letters[i], letters[j]] = [letters[j], letters[i]];
-    }
-    // Make sure the scrambled word is different from the original
-    if (letters.join('') === word.toUpperCase()) {
-      return scrambleWord(word);
-    }
-    return letters.join('');
-  };
 
   const getNewWord = useCallback(() => {
     const categoryKeys = Object.keys(categories);

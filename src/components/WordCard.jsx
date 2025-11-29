@@ -13,15 +13,27 @@ const WordCard = ({ word, category }) => {
     setIsPlaying(true);
     setShowSparkles(true);
     
-    // Use Web Speech API for consistent speech
-    const speech = new SpeechSynthesisUtterance(word);
-    speech.lang = 'en-US';
-    speech.rate = 0.8;
-    speech.onend = () => {
-      setIsPlaying(false);
-      setTimeout(() => setShowSparkles(false), 500);
-    };
-    window.speechSynthesis.speak(speech);
+    // Use Web Speech API for consistent speech (supported in most modern browsers)
+    if ('speechSynthesis' in window) {
+      const speech = new SpeechSynthesisUtterance(word);
+      speech.lang = 'en-US';
+      speech.rate = 0.8;
+      speech.onend = () => {
+        setIsPlaying(false);
+        setTimeout(() => setShowSparkles(false), 500);
+      };
+      speech.onerror = () => {
+        setIsPlaying(false);
+        setTimeout(() => setShowSparkles(false), 500);
+      };
+      window.speechSynthesis.speak(speech);
+    } else {
+      // Fallback for browsers without speech synthesis
+      setTimeout(() => {
+        setIsPlaying(false);
+        setShowSparkles(false);
+      }, 1000);
+    }
   };
 
   return (

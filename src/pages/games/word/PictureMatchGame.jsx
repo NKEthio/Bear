@@ -35,15 +35,17 @@ export default function PictureMatchGame() {
     const pairsCount = level === 'easy' ? 4 : level === 'medium' ? 6 : 8;
     const allCategoryKeys = Object.keys(allItems);
     const selectedItems = [];
+    const selectedKeys = new Set(); // Use Set for O(1) lookup
 
     while (selectedItems.length < pairsCount) {
       const randomCategoryKey = allCategoryKeys[Math.floor(Math.random() * allCategoryKeys.length)];
       const randomCategory = allItems[randomCategoryKey];
       const randomItem = randomCategory[Math.floor(Math.random() * randomCategory.length)];
       
-      const itemWithCategory = { name: randomItem, category: randomCategoryKey };
-      if (!selectedItems.some(item => item.name === randomItem && item.category === randomCategoryKey)) {
-        selectedItems.push(itemWithCategory);
+      const itemKey = `${randomCategoryKey}-${randomItem}`;
+      if (!selectedKeys.has(itemKey)) {
+        selectedKeys.add(itemKey);
+        selectedItems.push({ name: randomItem, category: randomCategoryKey });
       }
     }
 
