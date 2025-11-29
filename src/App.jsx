@@ -13,6 +13,9 @@ import About from './pages/common/About';
 import Games from './pages/games/Games';
 import AlphabetGame from './pages/games/alphabet/AlphabetGame';
 import WordGame from './pages/games/word/WordGame';
+import WordScrambleGame from './pages/games/word/WordScrambleGame';
+import PictureMatchGame from './pages/games/word/PictureMatchGame';
+import SpellingBeeGame from './pages/games/word/SpellingBeeGame';
 import SentenceGame from './pages/games/sentence/SentenceGame';
 import Speech from './pages/speech/Speech';
 import Dashboard from './pages/features/Dashboard';
@@ -59,6 +62,9 @@ function AnimatedRoutes() {
         <Route path="/games/words" element={<AnimatedRoute><PrivateRoute><WordGame /></PrivateRoute></AnimatedRoute>} />
         <Route path="/games/sentences" element={<AnimatedRoute><PrivateRoute><SentenceGame /></PrivateRoute></AnimatedRoute>} />
         <Route path="/games/grammar" element={<AnimatedRoute><PrivateRoute><GrammarGame /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/games/word-scramble" element={<AnimatedRoute><PrivateRoute><WordScrambleGame /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/games/picture-match" element={<AnimatedRoute><PrivateRoute><PictureMatchGame /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/games/spelling-bee" element={<AnimatedRoute><PrivateRoute><SpellingBeeGame /></PrivateRoute></AnimatedRoute>} />
         <Route path="/ai" element={<AnimatedRoute><PrivateRoute><AI /></PrivateRoute></AnimatedRoute>} />
         <Route path="/dashboard" element={<AnimatedRoute><PrivateRoute><Dashboard /></PrivateRoute></AnimatedRoute>} />
         <Route path="/login" element={<AnimatedRoute><Login /></AnimatedRoute>} />
