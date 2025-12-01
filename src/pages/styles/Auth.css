@@ -86,7 +86,7 @@
     text-decoration: underline;
   }
   
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     .auth-container {
       margin: 20px;
       padding: 15px;
@@ -96,5 +96,18 @@
     .auth-container button {
       font-size: 14px;
       padding: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .auth-container {
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .auth-container input,
+    .auth-container button {
+      font-size: 12px;
+      padding: 8px;
     }
   }
