@@ -145,6 +145,12 @@
   cursor: not-allowed;
   transform: none;
 }
+@media (max-width: 768px) {
+  .word-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+}
 
 @media (max-width: 480px) {
   .words-container {

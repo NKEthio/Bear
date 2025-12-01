@@ -47,6 +47,13 @@
   background-color: #357abd;
 }
 
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 0.8rem;
+  }
+}
+
 @media (max-width: 480px) {
   .grid-container {
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
