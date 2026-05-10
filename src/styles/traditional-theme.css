@@ -99,7 +99,9 @@
 }
 
 .app-theme :is(button, [class*='button'], [class*='btn']) {
-  background: linear-gradient(120deg, var(--traditional-green), var(--traditional-yellow), var(--traditional-red)) !important;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.22)),
+    linear-gradient(120deg, var(--traditional-green), var(--traditional-yellow), var(--traditional-red)) !important;
   color: #fff !important;
   border: 1px solid rgba(0, 0, 0, 0.18) !important;
   border-radius: 999px !important;
@@ -108,7 +110,9 @@
 }
 
 .app-theme :is(button:hover, [class*='button']:hover, [class*='btn']:hover) {
-  filter: brightness(0.96);
+  filter: brightness(0.88);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
 }
 
 .app-theme :is(input, select, textarea) {
@@ -131,7 +135,9 @@
 }
 
 .app-theme .user-list th {
-  background: linear-gradient(90deg, var(--traditional-green), var(--traditional-red)) !important;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)),
+    linear-gradient(90deg, var(--traditional-green), var(--traditional-yellow), var(--traditional-red)) !important;
   color: #fff !important;
 }
 
