@@ -28,8 +28,40 @@
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.2);
   color: #fff;
-  width: 40px;
+  min-width: 68px;
   height: 40px;
+  gap: 0.35rem;
+}
+
+.menu-toggle-icon {
+  width: 14px;
+  height: 2px;
+  background: currentColor;
+  display: inline-block;
+  position: relative;
+}
+
+.menu-toggle-icon::before,
+.menu-toggle-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 14px;
+  height: 2px;
+  background: currentColor;
+}
+
+.menu-toggle-icon::before {
+  top: -5px;
+}
+
+.menu-toggle-icon::after {
+  top: 5px;
+}
+
+.menu-toggle-text {
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .header-controls {
