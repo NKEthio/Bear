@@ -37,6 +37,7 @@ import OromoHome from './pages/common/OromoHome';
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import AnimatedRoute from './components/AnimatedRoute';
+import './styles/traditional-theme.css';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -121,8 +122,10 @@ function App() {
 
   return (
     <Router>
-      <Header lang={lang} onLanguageChange={handleLanguageChange} />
-      <AnimatedRoutes />
+      <div className="app-theme">
+        <Header lang={lang} onLanguageChange={handleLanguageChange} />
+        <AnimatedRoutes />
+      </div>
     </Router>
   );
 }

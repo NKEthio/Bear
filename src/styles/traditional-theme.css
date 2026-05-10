@@ -1,0 +1,146 @@
+.app-theme {
+  --traditional-green: #078930;
+  --traditional-yellow: #fcd116;
+  --traditional-red: #da121a;
+  --traditional-dark: #132716;
+  --traditional-bg: #f7f2e6;
+  --traditional-surface: #fffdf7;
+  --traditional-muted: #efe5cd;
+  --traditional-border: rgba(19, 39, 22, 0.28);
+  --traditional-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+  --traditional-font: 'Noto Sans Ethiopic', 'Noto Sans', 'Segoe UI', Arial, sans-serif;
+}
+
+.app-theme,
+.app-theme * {
+  font-family: var(--traditional-font);
+}
+
+.app-theme :is(
+    .home-page,
+    .language-home,
+    .lessons-container,
+    .games-container,
+    .words-container,
+    .sentences-container,
+    .alphabets-container,
+    .speech-container,
+    .feedback-container,
+    .auth-container,
+    .dashboard-container,
+    .grammar-container,
+    .alphabet-word-container,
+    .Drawing,
+    .Lesson1,
+    .lesson1-game,
+    .word-scramble-container,
+    .spelling-bee-container,
+    .picture-match-container,
+    .qalat-container,
+    .hahu-container,
+    .jump-game-container,
+    .word-cubes-container,
+    .MatchCase,
+    .game-container,
+    .whole-quiz,
+    .quiz-game
+  ) {
+  background:
+    linear-gradient(90deg, rgba(7, 137, 48, 0.08), rgba(252, 209, 22, 0.08), rgba(218, 18, 26, 0.08)),
+    var(--traditional-bg) !important;
+  color: var(--traditional-dark);
+  animation: none !important;
+  font-family: var(--traditional-font);
+}
+
+.app-theme :is(
+    .traditional-card,
+    .language-card,
+    .lesson-card,
+    .game-card,
+    .word-card,
+    .accordion-card,
+    .grammar-card,
+    .quiz,
+    .match-instructions,
+    .match-complete-modal,
+    .spelling-instructions,
+    .start-screen,
+    .game-area,
+    .match-game-area,
+    .spelling-game-area,
+    .intro-card,
+    .quick-links,
+    .link-tile,
+    .section,
+    .game,
+    .word-choice,
+    .letter-tile,
+    .evaluation-container,
+    .transcription-box,
+    .stat-item,
+    .score-item
+  ) {
+  background: linear-gradient(160deg, #fffdf8, var(--traditional-muted)) !important;
+  color: var(--traditional-dark) !important;
+  border: 1px solid var(--traditional-border) !important;
+  border-top: 4px solid var(--traditional-green) !important;
+  border-radius: 16px;
+  box-shadow: var(--traditional-shadow);
+}
+
+.app-theme :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--traditional-dark) !important;
+  text-shadow: none !important;
+}
+
+.app-theme :is(p, li, span, label, td, th) {
+  color: #2a382d;
+}
+
+.app-theme :is(button, [class*='button'], [class*='btn']) {
+  background: linear-gradient(120deg, var(--traditional-green), var(--traditional-yellow), var(--traditional-red)) !important;
+  color: #fff !important;
+  border: 1px solid rgba(0, 0, 0, 0.18) !important;
+  border-radius: 999px !important;
+  text-shadow: none !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.app-theme :is(button:hover, [class*='button']:hover, [class*='btn']:hover) {
+  filter: brightness(0.96);
+}
+
+.app-theme :is(input, select, textarea) {
+  background: #fffdf8 !important;
+  color: var(--traditional-dark) !important;
+  border: 1px solid var(--traditional-border) !important;
+  border-radius: 12px;
+}
+
+.app-theme :is(input:focus, select:focus, textarea:focus) {
+  outline: none;
+  border-color: var(--traditional-green) !important;
+  box-shadow: 0 0 0 3px rgba(7, 137, 48, 0.2) !important;
+}
+
+.app-theme :is(table, .user-list table) {
+  background: #fffdf8;
+  border: 1px solid var(--traditional-border);
+  border-radius: 12px;
+}
+
+.app-theme .user-list th {
+  background: linear-gradient(90deg, var(--traditional-green), var(--traditional-red)) !important;
+  color: #fff !important;
+}
+
+.app-theme .floating-decorations,
+.app-theme .card-decoration {
+  display: none !important;
+}
+
+.app-theme .games-container::before,
+.app-theme .games-container::after {
+  display: none !important;
+}
