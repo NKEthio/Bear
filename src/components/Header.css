@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 30;
-  background: linear-gradient(90deg, var(--color-primary) 0 var(--flag-green-end), var(--color-accent) var(--flag-green-end) var(--flag-yellow-end), var(--color-danger) var(--flag-yellow-end) 100%);
+  background: linear-gradient(90deg, var(--color-primary) 0% var(--flag-green-end), var(--color-accent) var(--flag-green-end) var(--flag-yellow-end), var(--color-danger) var(--flag-yellow-end) 100%);
   box-shadow: var(--shadow-md);
 }
 
