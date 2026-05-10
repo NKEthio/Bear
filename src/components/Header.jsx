@@ -65,7 +65,6 @@ const Header = ({ lang, onLanguageChange }) => {
         >
           <span className="menu-toggle-icon" aria-hidden="true" />
           <span className="menu-toggle-text">Menu</span>
-          <span className="menu-toggle-sr">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>
         </button>
 
         <div className={`header-controls ${isMenuOpen ? 'is-open' : ''}`}>

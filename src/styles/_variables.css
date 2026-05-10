@@ -17,5 +17,7 @@
   --radius-md: 16px;
   --radius-lg: 24px;
   --layout-max: 1120px;
+  --flag-green-end: 36%;
+  --flag-yellow-end: 68%;
   --font-family: 'Noto Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
