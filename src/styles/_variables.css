@@ -1,9 +1,23 @@
 :root {
-  --primary-color: #3A75C4; /* Darker blue for better contrast */
-  --secondary-color: #f5a623;
-  --background-color: #f8f8f8;
-  --text-color: #333;
-  --font-family: 'Arial', sans-serif;
-  --header-font-size: 2rem;
-  --body-font-size: 1rem;
+  --color-primary: #078930;
+  --color-primary-dark: #056723;
+  --color-accent: #fcd116;
+  --color-accent-dark: #d9b10d;
+  --color-danger: #da121a;
+  --color-bg: #f8f4ea;
+  --color-surface: #fffdf8;
+  --color-surface-muted: #f2ecde;
+  --color-text: #1f2a1f;
+  --color-text-muted: #4a5a4d;
+  --color-header-mobile-bg: #143124;
+  --border-strong: #1f2a1f;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.14);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --layout-max: 1120px;
+  --flag-green-end: 36%;
+  --flag-yellow-end: 68%;
+  --font-family: 'Noto Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
