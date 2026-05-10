@@ -26,7 +26,7 @@ export default function OromoHome() {
         <div className="link-grid">
           <Link to="/alphabets" className="link-tile">
             <h3>Qubee</h3>
-            <p>Qubee bu'uuraa saffisaan baradhu.</p>
+            <p>Qubee bu&apos;uuraa saffisaan baradhu.</p>
           </Link>
           <Link to="/words" className="link-tile">
             <h3>Jechoota</h3>
