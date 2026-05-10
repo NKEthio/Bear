@@ -116,7 +116,7 @@
     align-items: stretch;
     gap: 0.75rem;
     padding: 0.75rem;
-    background: #143124;
+    background: var(--color-header-mobile-bg);
   }
 
   .header-controls.is-open {
@@ -133,4 +133,16 @@
     text-align: center;
     width: 100%;
   }
+}
+
+.menu-toggle-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

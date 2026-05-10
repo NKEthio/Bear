@@ -59,12 +59,13 @@ const Header = ({ lang, onLanguageChange }) => {
         <button
           className="menu-toggle"
           type="button"
-          aria-label="Toggle navigation"
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
           <span className="menu-toggle-icon" aria-hidden="true" />
           <span className="menu-toggle-text">Menu</span>
+          <span className="menu-toggle-sr">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>
         </button>
 
         <div className={`header-controls ${isMenuOpen ? 'is-open' : ''}`}>
