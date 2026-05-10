@@ -83,7 +83,7 @@ export default function Games() {
     };
 
     return (
-        <div className="games-container">
+        <div className="games-container standard-page-shell">
             <motion.h1
                 className="games-title"
                 initial={{ scale: 0, rotate: -180 }}

@@ -18,6 +18,37 @@ body {
     radial-gradient(circle at bottom left, rgba(218, 18, 26, 0.1), transparent 42%),
     var(--color-bg);
   color: var(--color-text);
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(7, 137, 48, 0.1) 0 14px,
+      transparent 14px 28px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(218, 18, 26, 0.08) 0 14px,
+      transparent 14px 28px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(252, 209, 22, 0.15) 0 3px,
+      transparent 3px 36px
+    );
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
 }
 
 a {
@@ -52,6 +83,30 @@ button {
   border-top: 4px solid var(--color-primary);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
+}
+
+.standard-page-shell {
+  width: min(100%, var(--layout-max));
+  margin: clamp(0.8rem, 2.6vw, 1.8rem) auto;
+  padding: clamp(1rem, 2.6vw, 2rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--color-primary);
+  background: rgba(255, 253, 248, 0.9) !important;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(2px);
+}
+
+.lessons-title,
+.lessons-subtitle,
+.words-title,
+.progress-text {
+  color: var(--color-text) !important;
+  text-shadow: none !important;
+}
+
+.about-section {
+  line-height: 1.7;
 }
 
 .cta-button {

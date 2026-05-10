@@ -29,7 +29,7 @@ const Accordion = ({ title, children }) => {
 
 const Sentences = () => {
   return (
-    <main className="sentences-container" role="main">
+    <main className="sentences-container standard-page-shell" role="main">
       <h1>Understanding Sentences</h1>
 
       <Accordion title="Definition of a Sentence">

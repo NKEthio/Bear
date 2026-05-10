@@ -129,7 +129,7 @@ export default function SpeechToText() {
   };
 
   return (
-    <div className="speech-container">
+    <div className="speech-container standard-page-shell">
       <h2>Speech Practice Game</h2>
       <div className="speech-buttons">
         <button onClick={isListening ? stopListening : startListening} className={isListening ? "stop-btn" : "start-btn"}>

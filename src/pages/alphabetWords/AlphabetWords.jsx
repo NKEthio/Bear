@@ -56,7 +56,7 @@ export default function AlphabetWords() {
   };
 
   return (
-    <div className='alphabet-word-container'>
+    <div className='alphabet-word-container standard-page-shell'>
       <div className="alphabet-word">
         {alphabetWords.map((alphabetWord) => {
           const firstLetter = alphabetWord.word[0];

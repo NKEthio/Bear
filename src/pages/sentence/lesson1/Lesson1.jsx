@@ -25,7 +25,7 @@ import './Lesson1.css';
             };
         
             return (
-                <div className="Lesson1">
+                <div className="Lesson1 standard-page-shell">
                     <h1>Lesson1</h1>
                     <div className="lessons-container">
                         {lessons.map((lesson, index) => (

@@ -50,7 +50,7 @@ function Login() {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container standard-page-shell">
       <h2>Login</h2>
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleLogin}>

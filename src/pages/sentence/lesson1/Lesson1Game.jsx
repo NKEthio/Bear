@@ -6,7 +6,7 @@ import "./Lesson1Game.css"; // Import the stylesheet
 
 const Lesson1Game = () => {
     return (
-        <div className="lesson1-game">
+        <div className="lesson1-game standard-page-shell">
             <h1>Lesson 1 Games</h1>
             <div className="games-container">
                 <Game1 />

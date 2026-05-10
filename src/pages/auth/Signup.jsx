@@ -84,7 +84,7 @@ function Signup() {
 
 
   return (
-    <div className="auth-container">
+    <div className="auth-container standard-page-shell">
       {showConfetti && <Confetti />}
       <h2>Sign Up</h2>
       {error && <p className="error-message">{error}</p>}

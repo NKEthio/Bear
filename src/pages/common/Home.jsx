@@ -4,7 +4,7 @@ import './Home.css';
 
 const Home = () => {
   return (
-    <main className="home-page page-shell" role="main">
+    <main className="home-page page-shell standard-page-shell" role="main">
       <motion.section
         className="hero-section traditional-card"
         initial={{ opacity: 0, y: -24 }}

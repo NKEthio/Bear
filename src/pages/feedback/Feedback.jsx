@@ -62,7 +62,7 @@ const Feedback = () => {
   };
 
   return (
-    <div className="feedback-container">
+    <div className="feedback-container standard-page-shell">
       <h1 className="title">Share Your Feedback</h1>
       
       {/* Feedback Form */}

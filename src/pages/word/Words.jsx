@@ -57,7 +57,7 @@ const Words = () => {
   const currentEmoji = categoryEmojis[currentCategory.name];
 
   return (
-    <main className="words-container" role="main">
+    <main className="words-container standard-page-shell" role="main">
       <motion.div
         className="words-header"
         initial={{ y: -30, opacity: 0 }}

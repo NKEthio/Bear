@@ -52,7 +52,7 @@ const Alphabets = () => {
   const numbers = "123456789".split('');
 
   return (
-    <main className="alphabets-container" role="main">
+    <main className="alphabets-container standard-page-shell" role="main">
       <h1>Learn the Alphabet</h1>
       <p>Click on the letters and numbers to hear how they sound.</p>
 

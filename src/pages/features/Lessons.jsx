@@ -83,7 +83,7 @@ export default function Lessons() {
     };
 
     return (
-        <div className="lessons-container">
+        <div className="lessons-container standard-page-shell">
             <motion.div
                 className="lessons-header"
                 initial={{ y: -50, opacity: 0 }}

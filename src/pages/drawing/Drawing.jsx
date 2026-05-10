@@ -37,7 +37,7 @@ function Drawing() {
   };
 
   return (
-    <div className="Drawing">
+    <div className="Drawing standard-page-shell">
       <h1>Letter Drawing Practice</h1>
       <LetterDisplay letter={currentLetter} />
       <DrawingCanvas setUserDrawing={setUserDrawing} />

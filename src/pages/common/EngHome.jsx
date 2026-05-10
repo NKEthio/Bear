@@ -4,7 +4,7 @@ import '../styles/EngHome.css';
 
 export default function Home() {
   return (
-    <main className="language-home page-shell">
+    <main className="language-home page-shell standard-page-shell">
       <motion.section
         className="intro-card traditional-card"
         initial={{ opacity: 0, y: -18 }}

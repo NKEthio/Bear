@@ -4,7 +4,7 @@ import '../styles/EngHome.css';
 
 export default function OromoHome() {
   return (
-    <main className="language-home page-shell" lang="om">
+    <main className="language-home page-shell standard-page-shell" lang="om">
       <motion.section
         className="intro-card traditional-card"
         initial={{ opacity: 0, y: -18 }}

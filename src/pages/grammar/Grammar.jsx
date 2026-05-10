@@ -10,7 +10,7 @@ function Grammar() {
   };
 
   return (
-    <div className="grammar-container">
+    <div className="grammar-container standard-page-shell">
       <h2>Grammar</h2>
       <p className="intro">
       Hey there! Grammar is like the set of rules that helps us put words together in a way that makes sense when we talk or write. Imagine it’s like a game: if you follow the rules—like using “is” instead of “are” for one person, or adding an “s” to show more than one thing—everyone understands what you mean! It helps us say things clearly, like “The cat runs” instead of “Cat run the,” which sounds all mixed up. Without grammar, our sentences would be a big jumble,and nobody would know what we’re trying to say. 

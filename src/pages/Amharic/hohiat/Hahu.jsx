@@ -47,7 +47,7 @@ export default function Hahu() {
   };
 
   return (
-    <div className="hahu-container">
+    <div className="hahu-container standard-page-shell">
       <h1>የፊደል ገበታ</h1>
       <div className="gebeta">
         {alphabetRows.map((row, index) => (

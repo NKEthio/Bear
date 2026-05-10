@@ -35,11 +35,11 @@ export default function Dashboard() {
   // };
 
   if (loading) {
-    return <div className="dashboard-container">Loading...</div>;
+    return <div className="dashboard-container standard-page-shell">Loading...</div>;
   }
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container standard-page-shell">
       <div className="dashboard-header">
         <h2>Dashboard</h2>
         {/* <button className="logout-btn" onClick={handleLogout}>

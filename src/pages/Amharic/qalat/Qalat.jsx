@@ -39,7 +39,7 @@ export default function Words() {
     const currentCategory = levels[currentLevel]; // Get the category object based on the current index
 
     return (
-        <div className='qalat-container'>
+        <div className='qalat-container standard-page-shell'>
 
             {/* --- Level Navigation Buttons --- */}
             {levels.length > 1 && ( // Only show buttons if there's more than one level
