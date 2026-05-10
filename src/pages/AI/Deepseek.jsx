@@ -63,12 +63,7 @@ function DeepSeekComponent() {
   };
 
   return (
-    <div className="deepseek-container standard-page-shell" style={{ 
-      padding: '20px', 
-      maxWidth: '600px', 
-      margin: '0 auto',
-      fontFamily: 'Arial, sans-serif'
-    }}>
+    <div className="deepseek-container standard-page-shell">
       <div style={{ 
         display: 'flex', 
         justifyContent: 'space-between', 
