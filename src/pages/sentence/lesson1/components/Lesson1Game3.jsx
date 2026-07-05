@@ -92,7 +92,7 @@ const Lesson1Game3 = () => {
     }, [startNewRound]);
 
     return (
-        <div className="lesson2-game3">
+        <div className="lesson1-game3">
             <h2>Sentence Builder Game</h2>
             <p>Drag and drop words to form the correct sentence!</p>
             <p className="score"><b>Score: {score}</b></p>

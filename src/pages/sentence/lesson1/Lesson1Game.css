@@ -68,3 +68,33 @@
 .play-button:hover {
     background-color: #357abd;
 }
+
+@media (max-width: 768px) {
+    .lesson1-game h1 {
+        font-size: 2rem;
+    }
+
+    .game {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lesson1-game {
+        padding: 15px;
+        width: 95%;
+    }
+
+    .lesson1-game h1 {
+        font-size: 1.5rem;
+    }
+
+    .game h2 {
+        font-size: 1.5rem;
+    }
+
+    .game p {
+        font-size: 1rem;
+    }
+}

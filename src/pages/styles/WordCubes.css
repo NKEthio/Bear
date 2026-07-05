@@ -88,3 +88,29 @@
   .restart-button:hover {
     background: #0056b3;
   }
+
+  @media (max-width: 600px) {
+    .word-cubes-container {
+        padding: 10px;
+    }
+
+    .target-image {
+        max-width: 200px;
+    }
+
+    .cube {
+        width: 80px;
+        height: 80px;
+    }
+
+    .face-0 { transform: rotateY(0deg) translateZ(40px); }
+    .face-1 { transform: rotateY(60deg) translateZ(40px); }
+    .face-2 { transform: rotateY(120deg) translateZ(40px); }
+    .face-3 { transform: rotateY(180deg) translateZ(40px); }
+    .face-4 { transform: rotateY(240deg) translateZ(40px); }
+    .face-5 { transform: rotateY(300deg) translateZ(40px); }
+
+    .cube-letter {
+        font-size: 20px;
+    }
+  }

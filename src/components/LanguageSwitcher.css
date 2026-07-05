@@ -20,3 +20,15 @@
   background: #fff;
   transform: translateY(-1px);
 }
+
+@media (max-width: 600px) {
+  .language-switcher {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .language-switcher button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
