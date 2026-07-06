@@ -39,6 +39,11 @@ import soundSeven from '../../assets/alphabets/Seven.wav';
 import soundEight from '../../assets/alphabets/Eight.wav';
 import soundNine from '../../assets/alphabets/Nine.wav';
 
+/**
+ * Static asset mapping and data arrays moved outside the component to prevent
+ * re-allocation and re-processing (e.g., .split('')) on every render.
+ * This optimization reduces garbage collection pressure and CPU usage.
+ */
 const alphabetSounds = {
   A: soundA, B: soundB, C: soundC, D: soundD, E: soundE, F: soundF, G: soundG, H: soundH, I: soundI, J: soundJ, K: soundK, L: soundL, M: soundM, N: soundN, O: soundO, P: soundP, Q: soundQ, R: soundR, S: soundS, T: soundT, U: soundU, V: soundV, W: soundW, X: soundX, Y: soundY, Z: soundZ
 };
@@ -47,10 +52,10 @@ const numberSounds = {
   '1': soundOne, '2': soundTwo, '3': soundThree, '4': soundFour, '5': soundFive, '6': soundSix, '7': soundSeven, '8': soundEight, '9': soundNine
 };
 
-const Alphabets = () => {
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
-  const numbers = "123456789".split('');
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+const numbers = "123456789".split('');
 
+const Alphabets = () => {
   return (
     <main className="alphabets-container" role="main">
       <h1>Learn the Alphabet</h1>
