@@ -1,7 +1,14 @@
+import { memo } from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import './SoundButton.css';
 
-const SoundButton = ({ sound, text }) => {
+/**
+ * SoundButton component for playing audio on click.
+ * Wrapped in React.memo to prevent unnecessary re-renders in large grids,
+ * reducing the render cycle time for pages like Alphabets and Hahu.
+ */
+const SoundButton = memo(({ sound, text }) => {
   const playSound = () => {
     const audio = new Audio(sound);
     audio.play();
@@ -17,6 +24,13 @@ const SoundButton = ({ sound, text }) => {
       {text}
     </motion.button>
   );
+});
+
+SoundButton.displayName = 'SoundButton';
+
+SoundButton.propTypes = {
+  sound: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default SoundButton;
