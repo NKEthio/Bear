@@ -1,0 +1,3 @@
+## 2025-05-15 - [Audio Instance Reuse in React Components]
+**Learning:** Instantiating `new Audio()` inside an event handler (like `onClick`) causes repeated memory allocation and garbage collection pressure, especially in interactive educational apps where users click sound buttons frequently. This can lead to frame drops or lag on low-end devices. Reusing a single `Audio` instance via `useRef` and synchronizing its `src` via `useEffect` significantly reduces this overhead.
+**Action:** Always reuse media instances (Audio, Video) using `useRef` for components that are triggered by frequent user interactions. Ensure `React.memo` is used for these leaf components to prevent redundant renders when their parent lists update.

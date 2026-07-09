@@ -1,10 +1,31 @@
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import './SoundButton.css';
 
-const SoundButton = ({ sound, text }) => {
+/**
+ * SoundButton component that plays a sound when clicked.
+ * Optimized with React.memo and useRef to reuse Audio instances.
+ */
+const SoundButton = React.memo(({ sound, text }) => {
+  // Use useRef to maintain a single Audio instance for the lifetime of the component
+  const audioRef = useRef(null);
+
+  // Synchronize the Audio instance's source with the sound prop
+  useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(sound);
+    } else {
+      audioRef.current.src = sound;
+    }
+  }, [sound]);
+
   const playSound = () => {
-    const audio = new Audio(sound);
-    audio.play();
+    if (audioRef.current) {
+      // Reset sound to start to allow rapid clicking
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().catch(err => console.error("Audio play failed:", err));
+    }
   };
 
   return (
@@ -17,6 +38,13 @@ const SoundButton = ({ sound, text }) => {
       {text}
     </motion.button>
   );
+});
+
+SoundButton.displayName = 'SoundButton';
+
+SoundButton.propTypes = {
+  sound: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default SoundButton;
