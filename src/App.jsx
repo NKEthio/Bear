@@ -1,42 +1,44 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useState, lazy, Suspense } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { useAuth } from './hooks/useAuth';
 
-import Home from './pages/common/Home';
-import EngHome from './pages/common/EngHome';
-import Lessons from './pages/features/Lessons';
-import Alphabets from './pages/alphabet/Alphabets';
-import Words from './pages/word/Words';
-import Sentences from './pages/sentence/Sentences';
-import About from './pages/common/About';
-import Games from './pages/games/Games';
-import AlphabetGame from './pages/games/alphabet/AlphabetGame';
-import WordGame from './pages/games/word/WordGame';
-import WordScrambleGame from './pages/games/word/WordScrambleGame';
-import PictureMatchGame from './pages/games/word/PictureMatchGame';
-import SpellingBeeGame from './pages/games/word/SpellingBeeGame';
-import SentenceGame from './pages/games/sentence/SentenceGame';
-import Speech from './pages/speech/Speech';
-import Dashboard from './pages/features/Dashboard';
-import Signup from './pages/auth/Signup';
-import Login from './pages/auth/Login';
-import Grammar from './pages/grammar/Grammar';
-import GrammarGame from './pages/games/grammar/GrammarGame';
-import AI from './pages/AI/Deepseek';
-import Drawing from './pages/drawing/Drawing';
-import AlphabetWords from './pages/alphabetWords/AlphabetWords';
-import Lesson1 from './pages/sentence/lesson1/Lesson1';
-import Feedback from './pages/feedback/Feedback';
-import Lesson1Game from './pages/sentence/lesson1/Lesson1Game';
-import AmHome from './pages/common/AmHome';
-import Hahu from './pages/Amharic/hohiat/Hahu';
-import Qalat from './pages/Amharic/qalat/Qalat';
-import OromoHome from './pages/common/OromoHome';
+// Lazy load page components to improve initial load performance
+const Home = lazy(() => import('./pages/common/Home'));
+const EngHome = lazy(() => import('./pages/common/EngHome'));
+const Lessons = lazy(() => import('./pages/features/Lessons'));
+const Alphabets = lazy(() => import('./pages/alphabet/Alphabets'));
+const Words = lazy(() => import('./pages/word/Words'));
+const Sentences = lazy(() => import('./pages/sentence/Sentences'));
+const About = lazy(() => import('./pages/common/About'));
+const Games = lazy(() => import('./pages/games/Games'));
+const AlphabetGame = lazy(() => import('./pages/games/alphabet/AlphabetGame'));
+const WordGame = lazy(() => import('./pages/games/word/WordGame'));
+const WordScrambleGame = lazy(() => import('./pages/games/word/WordScrambleGame'));
+const PictureMatchGame = lazy(() => import('./pages/games/word/PictureMatchGame'));
+const SpellingBeeGame = lazy(() => import('./pages/games/word/SpellingBeeGame'));
+const SentenceGame = lazy(() => import('./pages/games/sentence/SentenceGame'));
+const Speech = lazy(() => import('./pages/speech/Speech'));
+const Dashboard = lazy(() => import('./pages/features/Dashboard'));
+const Signup = lazy(() => import('./pages/auth/Signup'));
+const Login = lazy(() => import('./pages/auth/Login'));
+const Grammar = lazy(() => import('./pages/grammar/Grammar'));
+const GrammarGame = lazy(() => import('./pages/games/grammar/GrammarGame'));
+const AI = lazy(() => import('./pages/AI/Deepseek'));
+const Drawing = lazy(() => import('./pages/drawing/Drawing'));
+const AlphabetWords = lazy(() => import('./pages/alphabetWords/AlphabetWords'));
+const Lesson1 = lazy(() => import('./pages/sentence/lesson1/Lesson1'));
+const Feedback = lazy(() => import('./pages/feedback/Feedback'));
+const Lesson1Game = lazy(() => import('./pages/sentence/lesson1/Lesson1Game'));
+const AmHome = lazy(() => import('./pages/common/AmHome'));
+const Hahu = lazy(() => import('./pages/Amharic/hohiat/Hahu'));
+const Qalat = lazy(() => import('./pages/Amharic/qalat/Qalat'));
+const OromoHome = lazy(() => import('./pages/common/OromoHome'));
 
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import AnimatedRoute from './components/AnimatedRoute';
+import Loading from './components/Loading';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -88,41 +90,15 @@ function App() {
   };
 
   if (loading) {
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-          fontSize: '2rem',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          color: '#fff'
-        }}
-      >
-        <motion.div
-          animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, 360, 0]
-          }}
-          transition={{ 
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          Loading...
-        </motion.div>
-      </motion.div>
-    );
+    return <Loading />;
   }
 
   return (
     <Router>
       <Header lang={lang} onLanguageChange={handleLanguageChange} />
-      <AnimatedRoutes />
+      <Suspense fallback={<Loading />}>
+        <AnimatedRoutes />
+      </Suspense>
     </Router>
   );
 }
