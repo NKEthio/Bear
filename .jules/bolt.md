@@ -1,0 +1,3 @@
+## 2025-05-15 - Route-based Code Splitting and Animation Regression
+**Learning:** When using `React.lazy` and `React.Suspense` with `framer-motion`'s `AnimatePresence`, the position of the `Suspense` boundary matters. Placing `Suspense` as a direct child of `AnimatePresence` and a parent of keyed `Routes` breaks exit animations because `AnimatePresence` loses track of the keyed component's lifecycle.
+**Action:** Always place `Suspense` outside of `AnimatePresence` (or inside the individual route wrappers) when combined with route-based animations to ensure correct entrance and exit transitions.
