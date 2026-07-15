@@ -47,10 +47,11 @@ const numberSounds = {
   '1': soundOne, '2': soundTwo, '3': soundThree, '4': soundFour, '5': soundFive, '6': soundSix, '7': soundSeven, '8': soundEight, '9': soundNine
 };
 
-const Alphabets = () => {
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
-  const numbers = "123456789".split('');
+// Hoist static data outside the component to avoid re-allocation on every render
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+const NUMBERS = "123456789".split('');
 
+const Alphabets = () => {
   return (
     <main className="alphabets-container" role="main">
       <h1>Learn the Alphabet</h1>
@@ -59,7 +60,7 @@ const Alphabets = () => {
       <div className="section">
         <h2>Capital Letters</h2>
         <div className="grid-container">
-          {letters.map(letter => (
+          {LETTERS.map(letter => (
             <SoundButton key={letter} sound={alphabetSounds[letter]} text={letter} />
           ))}
         </div>
@@ -68,7 +69,7 @@ const Alphabets = () => {
       <div className="section">
         <h2>Small Letters</h2>
         <div className="grid-container">
-          {letters.map(letter => (
+          {LETTERS.map(letter => (
             <SoundButton key={letter.toLowerCase()} sound={alphabetSounds[letter]} text={letter.toLowerCase()} />
           ))}
         </div>
@@ -77,7 +78,7 @@ const Alphabets = () => {
       <div className="section">
         <h2>Numbers</h2>
         <div className="grid-container">
-          {numbers.map(number => (
+          {NUMBERS.map(number => (
             <SoundButton key={number} sound={numberSounds[number]} text={number} />
           ))}
         </div>
