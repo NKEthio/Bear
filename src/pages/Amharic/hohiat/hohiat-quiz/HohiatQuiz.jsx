@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { auth, db } from "../../../firebase"; // Adjust path
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import '../../styles/AlphabetQuiz.css';
@@ -39,88 +39,101 @@ import soundSeven from '../../../assets/alphabets/Seven.wav';
 import soundEight from '../../../assets/alphabets/Eight.wav';
 import soundNine from '../../../assets/alphabets/Nine.wav';
 
-export default function AlphabetQuiz() {
-  const [questions] = useState([
-    [
-      [new Audio(soundA), 'A'], [new Audio(soundB), 'B'], [new Audio(soundC), 'C'], [new Audio(soundD), 'D'],
-      [new Audio(soundE), 'E'], [new Audio(soundF), 'F'], [new Audio(soundG), 'G'], [new Audio(soundH), 'H'],
-      [new Audio(soundI), 'I'], [new Audio(soundJ), 'J'], [new Audio(soundK), 'K'], [new Audio(soundL), 'L'],
-      [new Audio(soundM), 'M'], [new Audio(soundN), 'N'], [new Audio(soundO), 'O'], [new Audio(soundP), 'P'],
-      [new Audio(soundQ), 'Q'], [new Audio(soundR), 'R'], [new Audio(soundS), 'S'], [new Audio(soundT), 'T'],
-      [new Audio(soundU), 'U'], [new Audio(soundV), 'V'], [new Audio(soundW), 'W'], [new Audio(soundX), 'X'],
-      [new Audio(soundY), 'Y'], [new Audio(soundZ), 'Z']
-    ],
-    [
-      [new Audio(soundOne), '1'], [new Audio(soundTwo), '2'], [new Audio(soundThree), '3'],
-      [new Audio(soundFour), '4'], [new Audio(soundFive), '5'], [new Audio(soundSix), '6'],
-      [new Audio(soundSeven), '7'], [new Audio(soundEight), '8'], [new Audio(soundNine), '9'],
-    ]
-  ]);
+const QUESTIONS = [
+  [
+    [soundA, 'A'], [soundB, 'B'], [soundC, 'C'], [soundD, 'D'],
+    [soundE, 'E'], [soundF, 'F'], [soundG, 'G'], [soundH, 'H'],
+    [soundI, 'I'], [soundJ, 'J'], [soundK, 'K'], [soundL, 'L'],
+    [soundM, 'M'], [soundN, 'N'], [soundO, 'O'], [soundP, 'P'],
+    [soundQ, 'Q'], [soundR, 'R'], [soundS, 'S'], [soundT, 'T'],
+    [soundU, 'U'], [soundV, 'V'], [soundW, 'W'], [soundX, 'X'],
+    [soundY, 'Y'], [soundZ, 'Z']
+  ],
+  [
+    [soundOne, '1'], [soundTwo, '2'], [soundThree, '3'],
+    [soundFour, '4'], [soundFive, '5'], [soundSix, '6'],
+    [soundSeven, '7'], [soundEight, '8'], [soundNine, '9'],
+  ]
+];
 
+export default function AlphabetQuiz() {
+  const audioRef = useRef(null);
   const [, setCurrentQuestion] = useState(null);
   const [choices, setChoices] = useState([]);
   const [score, setScore] = useState(0);
   const [answer, setAnswer] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [setNumber, setSetNumber] = useState(false);
   const [setAlphabet, setSetAlphabet] = useState(false);
   const [Start, setStart] = useState(false);
   const [user, setUser] = useState(null);
 
+  const playSound = useCallback((soundSrc) => {
+    if (!soundSrc) return;
 
-  const playSound = useCallback((audio) => {
-    if (audio && !isPlaying) {
-      setIsPlaying(true);
-      audio.play();
-      console.log("audio Played");
-      audio.onended = () => {
-        setIsPlaying(false);
-      };
+    // Stop and clean up existing audio playback to ensure clean state transitions
+    if (audioRef.current) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current = new Audio();
     }
-  }, [isPlaying]);
-  
-    // Get current user
-    useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-        setUser(currentUser);
-      });
-      return () => unsubscribe();
-    }, []);
-  
 
-    // Save score to Firestore when game ends
-    const saveScore = useCallback(async () => {
-      if (!user) return;
-      try {
-        const userRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userRef);
-        const currentScore = userDoc.exists() ? userDoc.data().score || 0 : 0;
-        await updateDoc(userRef, {
-          score: currentScore + score, // Add game score to existing score
-          lastUpdated: new Date().toISOString(),
-        });
-      } catch (err) {
-        console.error("Error saving score:", err);
+    audioRef.current.src = soundSrc;
+
+    audioRef.current.play().catch((error) => {
+      console.log("Audio playback failed:", error);
+    });
+  }, []);
+  
+  // Clean up audio instance on unmount to prevent leaks and dangling threads
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
       }
-    }, [user, score]);
+    };
+  }, []);
 
-    // Run saveScore when the component unmounts (user leaves the page)
-    useEffect(() => {
-      return () => {
-        // Cleanup function runs on unmount
-        saveScore();
-      };
-    }, [saveScore]);
-  
+  // Get current user
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Save score to Firestore when game ends
+  const saveScore = useCallback(async () => {
+    if (!user) return;
+    try {
+      const userRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userRef);
+      const currentScore = userDoc.exists() ? userDoc.data().score || 0 : 0;
+      await updateDoc(userRef, {
+        score: currentScore + score, // Add game score to existing score
+        lastUpdated: new Date().toISOString(),
+      });
+    } catch (err) {
+      console.error("Error saving score:", err);
+    }
+  }, [user, score]);
+
+  // Run saveScore when the component unmounts (user leaves the page)
+  useEffect(() => {
+    return () => {
+      // Cleanup function runs on unmount
+      saveScore();
+    };
+  }, [saveScore]);
 
   const askQuestion = useCallback(() => {
     let randomQuestionSet;
     if (setAlphabet) {
-      randomQuestionSet = questions[0];
+      randomQuestionSet = QUESTIONS[0];
     } else if (setNumber) {
-      randomQuestionSet = questions[1];
+      randomQuestionSet = QUESTIONS[1];
     } else {
-      randomQuestionSet = questions[Math.floor(Math.random() * questions.length)];
+      randomQuestionSet = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
     }
 
     const randomIndex = Math.floor(Math.random() * randomQuestionSet.length);
@@ -145,7 +158,7 @@ export default function AlphabetQuiz() {
     setChoices(choices);
     setAnswer(correctAnswer);
     playSound(question[0]);
-  }, [questions, setAlphabet, setNumber, playSound, setCurrentQuestion, setChoices, setAnswer]);
+  }, [setAlphabet, setNumber, playSound, setCurrentQuestion, setChoices, setAnswer]);
 
   const checkAnswer = (choice) => {
     if (choice === answer) {
