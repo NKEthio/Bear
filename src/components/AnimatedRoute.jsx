@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 const AnimatedRoute = ({ children }) => {
   const pageVariants = {
@@ -24,6 +25,10 @@ const AnimatedRoute = ({ children }) => {
       {children}
     </motion.div>
   );
+};
+
+AnimatedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default AnimatedRoute;
