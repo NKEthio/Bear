@@ -1,10 +1,22 @@
+import { useRef, memo } from 'react';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import './SoundButton.css';
 
-const SoundButton = ({ sound, text }) => {
+const SoundButton = memo(({ sound, text }) => {
+  const audioRef = useRef(null);
+
   const playSound = () => {
-    const audio = new Audio(sound);
-    audio.play();
+    if (!audioRef.current) {
+      audioRef.current = new Audio(sound);
+    }
+    // Sync the source if sound changes
+    if (audioRef.current.src !== sound) {
+      audioRef.current.src = sound;
+    }
+    audioRef.current.play().catch(err => {
+      console.error("Playback failed", err);
+    });
   };
 
   return (
@@ -17,6 +29,13 @@ const SoundButton = ({ sound, text }) => {
       {text}
     </motion.button>
   );
+});
+
+SoundButton.displayName = 'SoundButton';
+
+SoundButton.propTypes = {
+  sound: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default SoundButton;
