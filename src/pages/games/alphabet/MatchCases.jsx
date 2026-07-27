@@ -53,11 +53,7 @@ function MatchUpperandLowerCase() {
     };
   }, [saveScore]);
 
-
-  useEffect(() => {
-    startNewRound();
-  }, [startNewRound]);
-
+  // startNewRound is defined before its use to avoid Temporal Dead Zone (TDZ) ReferenceErrors.
   const startNewRound = useCallback(() => {
     const availablePairs = pairs.filter((pair) => !pair.matched);
     if (availablePairs.length < 4) {
@@ -83,6 +79,13 @@ function MatchUpperandLowerCase() {
       }))
     );
   }, [pairs, score]);
+
+  // Initialize the first round only on mount to prevent redundant re-renders,
+  // reshuffling, and state resets on subsequent matches.
+  useEffect(() => {
+    startNewRound();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const moveLetter = useCallback((id, to) => {
     let newPairs;
