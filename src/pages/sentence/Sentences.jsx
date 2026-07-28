@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import PropTypes from 'prop-types';
 import './Sentences.css';
 
 const Accordion = ({ title, children }) => {
@@ -25,6 +26,11 @@ const Accordion = ({ title, children }) => {
       </AnimatePresence>
     </div>
   );
+};
+
+Accordion.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 const Sentences = () => {
