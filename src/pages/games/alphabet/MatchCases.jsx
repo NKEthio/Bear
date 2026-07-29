@@ -53,11 +53,6 @@ function MatchUpperandLowerCase() {
     };
   }, [saveScore]);
 
-
-  useEffect(() => {
-    startNewRound();
-  }, [startNewRound]);
-
   const startNewRound = useCallback(() => {
     const availablePairs = pairs.filter((pair) => !pair.matched);
     if (availablePairs.length < 4) {
@@ -83,6 +78,10 @@ function MatchUpperandLowerCase() {
       }))
     );
   }, [pairs, score]);
+
+  useEffect(() => {
+    startNewRound();
+  }, []);
 
   const moveLetter = useCallback((id, to) => {
     let newPairs;
