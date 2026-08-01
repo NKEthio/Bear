@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import './SoundButton.css';
 
@@ -17,6 +18,11 @@ const SoundButton = ({ sound, text }) => {
       {text}
     </motion.button>
   );
+};
+
+SoundButton.propTypes = {
+  sound: PropTypes.string,
+  text: PropTypes.string.isRequired,
 };
 
 export default SoundButton;
