@@ -1,5 +1,5 @@
 import './Qalat.css';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 // Define levels outside the component (or inside if preferred, but outside is common for constants)
 const levels = [
@@ -13,15 +13,36 @@ const levels = [
     { name: 'shapes', name_am: 'ቅርጾች', words: ["ክብ", "ካሬ", "ትሪያንግል", "አራት ማዕዘን", "ኮከብ"] }
 ];
 
+// Hoisted helper functions outside the component to prevent re-allocation on every render cycle
+const getImagePath = (category, word) => `/wordImages/Amharic/${category}/${word}.JPG`;
+const getAudioPath = (word) => `/Audios/${word}.mp3`;
+
 export default function Words() {
     const [currentLevel, setCurrentLevel] = useState(0); // Index of the current level
 
-    const getImagePath = (category, word) => `/wordImages/Amharic/${category}/${word}.JPG`;
-    const getAudioPath = (word) => `/Audios/${word}.mp3`;
+    // Single Audio element reference to prevent multiple concurrent playing audios and reduce GC overhead
+    const audioRef = useRef(null);
+
+    // Stop and clean up audio when component unmounts
+    useEffect(() => {
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current = null;
+            }
+        };
+    }, []);
 
     const playAudio = (word) => {
-        const audio = new Audio(getAudioPath(word));
-        audio.play().catch((error) => {
+        if (!audioRef.current) {
+            audioRef.current = new Audio();
+        } else {
+            // Stop current playback to ensure responsive audio play and prevent overlaps
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+        }
+        audioRef.current.src = getAudioPath(word);
+        audioRef.current.play().catch((error) => {
             console.error(`Error playing audio for ${word}:`, error);
         });
     };
