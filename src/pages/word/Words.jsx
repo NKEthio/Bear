@@ -26,18 +26,19 @@ const categoryColors = {
   shapes: '#1abc9c',
 };
 
-const Words = () => {
-  const levels = [
-    { name: 'animals', words: ["Ant", "Cat", "Cow", "Dog", "Egg", "Goat", "Hen", "Ox", "Pig"] },
-    { name: 'food', words: ["Bread", "Butter", "Cheese", "Pizza", "Sandwich"] },
-    { name: 'cloths', words: ["Belt", "Cap", "Dress", "Hat", "Jacket", "Skirt", "Shorts", "Socks", "Sweater", "Shirt", "Tie", "Trousers", "Zip"] },
-    { name: 'home', words: ["Bed", "Bench", "Box", "Cup", "Fork", "Lamp", "Plate", "Pot", "Roof", "Stair", "Umbrella", "Wall", "Window"] },
-    { name: 'time', words: ["Clock", "Calendar", "Watch", "Hourglass"] },
-    { name: 'action', words: ["Run", "Jump", "Laugh", "Talk", "Play"] },
-    { name: 'colors', words: ["Red", "Blue", "Green", "Orange", "White", "Yellow"] },
-    { name: 'shapes', words: ["Circle", "Square", "Triangle", "Rectangle", "Star"] }
-  ];
+// Hoist static config array outside the component definition to prevent recreation on every render cycle.
+const levels = [
+  { name: 'animals', words: ["Ant", "Cat", "Cow", "Dog", "Egg", "Goat", "Hen", "Ox", "Pig"] },
+  { name: 'food', words: ["Bread", "Butter", "Cheese", "Pizza", "Sandwich"] },
+  { name: 'cloths', words: ["Belt", "Cap", "Dress", "Hat", "Jacket", "Skirt", "Shorts", "Socks", "Sweater", "Shirt", "Tie", "Trousers", "Zip"] },
+  { name: 'home', words: ["Bed", "Bench", "Box", "Cup", "Fork", "Lamp", "Plate", "Pot", "Roof", "Stair", "Umbrella", "Wall", "Window"] },
+  { name: 'time', words: ["Clock", "Calendar", "Watch", "Hourglass"] },
+  { name: 'action', words: ["Run", "Jump", "Laugh", "Talk", "Play"] },
+  { name: 'colors', words: ["Red", "Blue", "Green", "Orange", "White", "Yellow"] },
+  { name: 'shapes', words: ["Circle", "Square", "Triangle", "Rectangle", "Star"] }
+];
 
+const Words = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
 
   const handleNextLevel = () => {
