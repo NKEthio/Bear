@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -25,6 +26,11 @@ const Accordion = ({ title, children }) => {
       </AnimatePresence>
     </div>
   );
+};
+
+Accordion.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 const Sentences = () => {

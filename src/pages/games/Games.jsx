@@ -65,19 +65,19 @@ export default function Games() {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1,
+                staggerChildren: 0.05,
             },
         },
     };
 
     const cardVariants = {
-        hidden: { y: 50, opacity: 0 },
+        hidden: { y: 15, opacity: 0 },
         visible: {
             y: 0,
             opacity: 1,
             transition: {
-                type: 'spring',
-                stiffness: 100,
+                duration: 0.3,
+                ease: 'easeOut',
             },
         },
     };
@@ -86,17 +86,17 @@ export default function Games() {
         <div className="games-container">
             <motion.h1
                 className="games-title"
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: 'spring', stiffness: 200, duration: 0.8 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
             >
                 🎮 Game Zone 🎮
             </motion.h1>
             <motion.p
                 className="games-subtitle"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1, duration: 0.4 }}
             >
                 Choose a game and start learning while having fun!
             </motion.p>
@@ -114,37 +114,28 @@ export default function Games() {
                                 className="game-card"
                                 style={{ background: game.bgGradient }}
                                 whileHover={{
-                                    scale: 1.05,
-                                    rotate: [0, -2, 2, -2, 0],
-                                    boxShadow: `0 20px 40px ${game.color}80`,
+                                    scale: 1.02,
+                                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
                                 }}
-                                whileTap={{ scale: 0.95 }}
+                                whileTap={{ scale: 0.98 }}
                             >
                                 <span className="game-emoji">{game.emoji}</span>
                                 <h2 className="game-title">{game.title}</h2>
                                 <p className="game-description">{game.description}</p>
-                                <motion.div
-                                    className="play-button"
-                                    whileHover={{ scale: 1.1 }}
-                                >
+                                <div className="play-button">
                                     Play Now! 🚀
-                                </motion.div>
+                                </div>
                             </motion.div>
                         </Link>
                     </motion.div>
                 ))}
             </motion.div>
 
-            <motion.div
-                className="games-navigation"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-            >
+            <div className="games-navigation">
                 <Link to="/lessons" className="back-button">
                     ← Back to Lessons
                 </Link>
-            </motion.div>
+            </div>
         </div>
     );
 }

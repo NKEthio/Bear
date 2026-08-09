@@ -47,24 +47,24 @@ function AnimatedRoutes() {
         <Route path="/" element={<AnimatedRoute><Home /></AnimatedRoute>} />
         <Route path="/engHome" element={<AnimatedRoute><EngHome /></AnimatedRoute>} />
         <Route path="/lessons" element={<AnimatedRoute><Lessons /></AnimatedRoute>} />
-        <Route path="/alphabets" element={<AnimatedRoute><PrivateRoute><Alphabets /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/words" element={<AnimatedRoute><PrivateRoute><Words /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/lesson1" element={<AnimatedRoute><PrivateRoute><Lesson1 /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/sentences" element={<AnimatedRoute><PrivateRoute><Sentences /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/grammar" element={<AnimatedRoute><PrivateRoute><Grammar /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/speech" element={<AnimatedRoute><PrivateRoute><Speech /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/drawing" element={<AnimatedRoute><PrivateRoute><Drawing /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/feedback" element={<AnimatedRoute><PrivateRoute><Feedback /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/alphabetWords" element={<AnimatedRoute><PrivateRoute><AlphabetWords /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/games" element={<AnimatedRoute><PrivateRoute><Games /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/games/lesson1" element={<AnimatedRoute><PrivateRoute><Lesson1Game /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/games/alphabets" element={<AnimatedRoute><PrivateRoute><AlphabetGame /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/games/words" element={<AnimatedRoute><PrivateRoute><WordGame /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/games/sentences" element={<AnimatedRoute><PrivateRoute><SentenceGame /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/games/grammar" element={<AnimatedRoute><PrivateRoute><GrammarGame /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/games/word-scramble" element={<AnimatedRoute><PrivateRoute><WordScrambleGame /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/games/picture-match" element={<AnimatedRoute><PrivateRoute><PictureMatchGame /></PrivateRoute></AnimatedRoute>} />
-        <Route path="/games/spelling-bee" element={<AnimatedRoute><PrivateRoute><SpellingBeeGame /></PrivateRoute></AnimatedRoute>} />
+        <Route path="/alphabets" element={<AnimatedRoute><Alphabets /></AnimatedRoute>} />
+        <Route path="/words" element={<AnimatedRoute><Words /></AnimatedRoute>} />
+        <Route path="/lesson1" element={<AnimatedRoute><Lesson1 /></AnimatedRoute>} />
+        <Route path="/sentences" element={<AnimatedRoute><Sentences /></AnimatedRoute>} />
+        <Route path="/grammar" element={<AnimatedRoute><Grammar /></AnimatedRoute>} />
+        <Route path="/speech" element={<AnimatedRoute><Speech /></AnimatedRoute>} />
+        <Route path="/drawing" element={<AnimatedRoute><Drawing /></AnimatedRoute>} />
+        <Route path="/feedback" element={<AnimatedRoute><Feedback /></AnimatedRoute>} />
+        <Route path="/alphabetWords" element={<AnimatedRoute><AlphabetWords /></AnimatedRoute>} />
+        <Route path="/games" element={<AnimatedRoute><Games /></AnimatedRoute>} />
+        <Route path="/games/lesson1" element={<AnimatedRoute><Lesson1Game /></AnimatedRoute>} />
+        <Route path="/games/alphabets" element={<AnimatedRoute><AlphabetGame /></AnimatedRoute>} />
+        <Route path="/games/words" element={<AnimatedRoute><WordGame /></AnimatedRoute>} />
+        <Route path="/games/sentences" element={<AnimatedRoute><SentenceGame /></AnimatedRoute>} />
+        <Route path="/games/grammar" element={<AnimatedRoute><GrammarGame /></AnimatedRoute>} />
+        <Route path="/games/word-scramble" element={<AnimatedRoute><WordScrambleGame /></AnimatedRoute>} />
+        <Route path="/games/picture-match" element={<AnimatedRoute><PictureMatchGame /></AnimatedRoute>} />
+        <Route path="/games/spelling-bee" element={<AnimatedRoute><SpellingBeeGame /></AnimatedRoute>} />
         <Route path="/ai" element={<AnimatedRoute><PrivateRoute><AI /></PrivateRoute></AnimatedRoute>} />
         <Route path="/dashboard" element={<AnimatedRoute><PrivateRoute><Dashboard /></PrivateRoute></AnimatedRoute>} />
         <Route path="/login" element={<AnimatedRoute><Login /></AnimatedRoute>} />
@@ -104,11 +104,10 @@ function App() {
       >
         <motion.div
           animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, 360, 0]
+            opacity: [0.5, 1, 0.5]
           }}
           transition={{ 
-            duration: 2,
+            duration: 1.5,
             repeat: Infinity,
             ease: "easeInOut"
           }}

@@ -63,21 +63,19 @@ export default function Lessons() {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.15,
+                staggerChildren: 0.05,
             },
         },
     };
 
     const cardVariants = {
-        hidden: { y: 60, opacity: 0, rotateY: -30 },
+        hidden: { y: 15, opacity: 0 },
         visible: {
             y: 0,
             opacity: 1,
-            rotateY: 0,
             transition: {
-                type: 'spring',
-                stiffness: 100,
-                damping: 10,
+                duration: 0.3,
+                ease: 'easeOut',
             },
         },
     };
@@ -86,9 +84,9 @@ export default function Lessons() {
         <div className="lessons-container">
             <motion.div
                 className="lessons-header"
-                initial={{ y: -50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
             >
                 <h1 className="lessons-title">
                     <span className="title-emoji">📚</span>
@@ -114,11 +112,10 @@ export default function Lessons() {
                             <motion.div
                                 className="lesson-card"
                                 whileHover={{
-                                    scale: 1.05,
-                                    rotateY: 5,
-                                    boxShadow: `0 20px 40px ${lesson.color}60`,
+                                    scale: 1.02,
+                                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
                                 }}
-                                whileTap={{ scale: 0.95 }}
+                                whileTap={{ scale: 0.98 }}
                             >
                                 <div
                                     className="lesson-card-header"
@@ -137,13 +134,12 @@ export default function Lessons() {
                                     />
                                     <h2 className="lesson-title">{lesson.title}</h2>
                                     <p className="lesson-description">{lesson.description}</p>
-                                    <motion.div
+                                    <div
                                         className="start-button"
-                                        whileHover={{ scale: 1.1 }}
                                         style={{ backgroundColor: lesson.color }}
                                     >
                                         Start! ➔
-                                    </motion.div>
+                                    </div>
                                 </div>
                                 <div
                                     className="card-decoration"
@@ -155,26 +151,13 @@ export default function Lessons() {
                 ))}
             </motion.div>
 
-            <motion.div
-                className="lessons-navigation"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-            >
+            <div className="lessons-navigation">
                 <Link to="/engHome" className="nav-button back">
                     ← Back
                 </Link>
                 <Link to="/alphabets" className="nav-button next">
                     Start Learning →
                 </Link>
-            </motion.div>
-
-            {/* Floating decorations */}
-            <div className="floating-decorations">
-                <span className="floating-star" style={{ top: '10%', left: '5%' }}>⭐</span>
-                <span className="floating-star" style={{ top: '20%', right: '10%' }}>🌟</span>
-                <span className="floating-star" style={{ bottom: '30%', left: '8%' }}>✨</span>
-                <span className="floating-star" style={{ bottom: '15%', right: '5%' }}>💫</span>
             </div>
         </div>
     );

@@ -2,43 +2,62 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/EngHome.css';
 
+const playKidFriendlySound = (label) => {
+  console.log(`[Sound Placeholder] Playing audio cue for: ${label}`);
+};
+
 export default function Home() {
   return (
-    <main className="language-home page-shell">
+    <main className="language-home page-shell kid-lang-home">
       <motion.section
-        className="intro-card traditional-card"
-        initial={{ opacity: 0, y: -18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
+        className="intro-card traditional-card kid-lang-hero"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
       >
-        <h1>Learn English with Confidence</h1>
-        <p>
-          Follow structured lessons, play practice games, and use speaking tools to improve your
-          English skills in a friendly, distraction-free interface.
-        </p>
-        <Link to="/lessons" className="cta-button" style={{ marginTop: '1rem' }}>
-          Start lessons
-        </Link>
+        <h1 className="kid-lang-title">English for Kids! 🐻</h1>
       </motion.section>
 
-      <section className="quick-links traditional-card">
-        <h2>Quick links</h2>
-        <div className="link-grid">
-          <Link to="/alphabets" className="link-tile">
-            <h3>Alphabets</h3>
-            <p>Learn and practice letters quickly.</p>
+      <section className="quick-links traditional-card kid-links-container">
+        <div className="link-grid kid-grid">
+          <Link
+            to="/alphabets"
+            className="link-tile kid-tile alphabets-tile"
+            onMouseEnter={() => playKidFriendlySound("Alphabets")}
+            onClick={() => playKidFriendlySound("Alphabets")}
+          >
+            <span className="kid-tile-emoji">🔤</span>
+            <h3 className="kid-tile-label">Alphabets</h3>
           </Link>
-          <Link to="/words" className="link-tile">
-            <h3>Words</h3>
-            <p>Grow your everyday vocabulary.</p>
+
+          <Link
+            to="/words"
+            className="link-tile kid-tile words-tile"
+            onMouseEnter={() => playKidFriendlySound("Words")}
+            onClick={() => playKidFriendlySound("Words")}
+          >
+            <span className="kid-tile-emoji">📝</span>
+            <h3 className="kid-tile-label">Words</h3>
           </Link>
-          <Link to="/sentences" className="link-tile">
-            <h3>Sentences</h3>
-            <p>Understand practical sentence patterns.</p>
+
+          <Link
+            to="/sentences"
+            className="link-tile kid-tile sentences-tile"
+            onMouseEnter={() => playKidFriendlySound("Sentences")}
+            onClick={() => playKidFriendlySound("Sentences")}
+          >
+            <span className="kid-tile-emoji">📖</span>
+            <h3 className="kid-tile-label">Sentences</h3>
           </Link>
-          <Link to="/games" className="link-tile">
-            <h3>Games</h3>
-            <p>Reinforce learning with interactive challenges.</p>
+
+          <Link
+            to="/games"
+            className="link-tile kid-tile games-tile"
+            onMouseEnter={() => playKidFriendlySound("Games")}
+            onClick={() => playKidFriendlySound("Games")}
+          >
+            <span className="kid-tile-emoji">🎮</span>
+            <h3 className="kid-tile-label">Games</h3>
           </Link>
         </div>
       </section>
