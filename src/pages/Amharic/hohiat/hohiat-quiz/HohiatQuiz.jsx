@@ -1,83 +1,107 @@
-import { useState, useEffect, useCallback } from 'react';
-import { auth, db } from "../../../firebase"; // Adjust path
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { auth, db } from "../../../../firebase"; // Adjusted path to point to src/firebase
 import { doc, updateDoc, getDoc } from "firebase/firestore";
-import '../../styles/AlphabetQuiz.css';
-import soundA from '../../../assets/alphabets/A.wav';
-import soundB from '../../../assets/alphabets/B.wav';
-import soundC from '../../../assets/alphabets/C.wav';
-import soundD from '../../../assets/alphabets/D.wav';
-import soundE from '../../../assets/alphabets/E.wav';
-import soundF from '../../../assets/alphabets/F.wav';
-import soundG from '../../../assets/alphabets/G.wav';
-import soundH from '../../../assets/alphabets/H.wav';
-import soundI from '../../../assets/alphabets/I.wav';
-import soundJ from '../../../assets/alphabets/J.wav';
-import soundK from '../../../assets/alphabets/K.wav';
-import soundL from '../../../assets/alphabets/L.wav';
-import soundM from '../../../assets/alphabets/M.wav';
-import soundN from '../../../assets/alphabets/N.wav';
-import soundO from '../../../assets/alphabets/O.wav';
-import soundP from '../../../assets/alphabets/P.wav';
-import soundQ from '../../../assets/alphabets/Q.wav';
-import soundR from '../../../assets/alphabets/R.wav';
-import soundS from '../../../assets/alphabets/S.wav';
-import soundT from '../../../assets/alphabets/T.wav';
-import soundU from '../../../assets/alphabets/U.wav';
-import soundV from '../../../assets/alphabets/V.wav';
-import soundW from '../../../assets/alphabets/W.wav';
-import soundX from '../../../assets/alphabets/X.wav';
-import soundY from '../../../assets/alphabets/Y.wav';
-import soundZ from '../../../assets/alphabets/Z.wav';
+import '../../../styles/AlphabetQuiz.css'; // Adjusted path to point to src/pages/styles/AlphabetQuiz.css
+import soundA from '../../../../assets/alphabets/A.wav'; // Adjusted path to point to src/assets/alphabets
+import soundB from '../../../../assets/alphabets/B.wav';
+import soundC from '../../../../assets/alphabets/C.wav';
+import soundD from '../../../../assets/alphabets/D.wav';
+import soundE from '../../../../assets/alphabets/E.wav';
+import soundF from '../../../../assets/alphabets/F.wav';
+import soundG from '../../../../assets/alphabets/G.wav';
+import soundH from '../../../../assets/alphabets/H.wav';
+import soundI from '../../../../assets/alphabets/I.wav';
+import soundJ from '../../../../assets/alphabets/J.wav';
+import soundK from '../../../../assets/alphabets/K.wav';
+import soundL from '../../../../assets/alphabets/L.wav';
+import soundM from '../../../../assets/alphabets/M.wav';
+import soundN from '../../../../assets/alphabets/N.wav';
+import soundO from '../../../../assets/alphabets/O.wav';
+import soundP from '../../../../assets/alphabets/P.wav';
+import soundQ from '../../../../assets/alphabets/Q.wav';
+import soundR from '../../../../assets/alphabets/R.wav';
+import soundS from '../../../../assets/alphabets/S.wav';
+import soundT from '../../../../assets/alphabets/T.wav';
+import soundU from '../../../../assets/alphabets/U.wav';
+import soundV from '../../../../assets/alphabets/V.wav';
+import soundW from '../../../../assets/alphabets/W.wav';
+import soundX from '../../../../assets/alphabets/X.wav';
+import soundY from '../../../../assets/alphabets/Y.wav';
+import soundZ from '../../../../assets/alphabets/Z.wav';
 
-import soundOne from '../../../assets/alphabets/One.wav';
-import soundTwo from '../../../assets/alphabets/Two.wav';
-import soundThree from '../../../assets/alphabets/Three.wav';
-import soundFour from '../../../assets/alphabets/Four.wav';
-import soundFive from '../../../assets/alphabets/Five.wav';
-import soundSix from '../../../assets/alphabets/Six.wav';
-import soundSeven from '../../../assets/alphabets/Seven.wav';
-import soundEight from '../../../assets/alphabets/Eight.wav';
-import soundNine from '../../../assets/alphabets/Nine.wav';
+import soundOne from '../../../../assets/alphabets/One.wav';
+import soundTwo from '../../../../assets/alphabets/Two.wav';
+import soundThree from '../../../../assets/alphabets/Three.wav';
+import soundFour from '../../../../assets/alphabets/Four.wav';
+import soundFive from '../../../../assets/alphabets/Five.wav';
+import soundSix from '../../../../assets/alphabets/Six.wav';
+import soundSeven from '../../../../assets/alphabets/Seven.wav';
+import soundEight from '../../../../assets/alphabets/Eight.wav';
+import soundNine from '../../../../assets/alphabets/Nine.wav';
+
+// Hoist static questions array outside of component function to avoid re-allocation on every render
+// and prevent creating 35 Audio objects immediately on mount.
+const QUESTIONS_DATA = [
+  [
+    [soundA, 'A'], [soundB, 'B'], [soundC, 'C'], [soundD, 'D'],
+    [soundE, 'E'], [soundF, 'F'], [soundG, 'G'], [soundH, 'H'],
+    [soundI, 'I'], [soundJ, 'J'], [soundK, 'K'], [soundL, 'L'],
+    [soundM, 'M'], [soundN, 'N'], [soundO, 'O'], [soundP, 'P'],
+    [soundQ, 'Q'], [soundR, 'R'], [soundS, 'S'], [soundT, 'T'],
+    [soundU, 'U'], [soundV, 'V'], [soundW, 'W'], [soundX, 'X'],
+    [soundY, 'Y'], [soundZ, 'Z']
+  ],
+  [
+    [soundOne, '1'], [soundTwo, '2'], [soundThree, '3'],
+    [soundFour, '4'], [soundFive, '5'], [soundSix, '6'],
+    [soundSeven, '7'], [soundEight, '8'], [soundNine, '9'],
+  ]
+];
 
 export default function AlphabetQuiz() {
-  const [questions] = useState([
-    [
-      [new Audio(soundA), 'A'], [new Audio(soundB), 'B'], [new Audio(soundC), 'C'], [new Audio(soundD), 'D'],
-      [new Audio(soundE), 'E'], [new Audio(soundF), 'F'], [new Audio(soundG), 'G'], [new Audio(soundH), 'H'],
-      [new Audio(soundI), 'I'], [new Audio(soundJ), 'J'], [new Audio(soundK), 'K'], [new Audio(soundL), 'L'],
-      [new Audio(soundM), 'M'], [new Audio(soundN), 'N'], [new Audio(soundO), 'O'], [new Audio(soundP), 'P'],
-      [new Audio(soundQ), 'Q'], [new Audio(soundR), 'R'], [new Audio(soundS), 'S'], [new Audio(soundT), 'T'],
-      [new Audio(soundU), 'U'], [new Audio(soundV), 'V'], [new Audio(soundW), 'W'], [new Audio(soundX), 'X'],
-      [new Audio(soundY), 'Y'], [new Audio(soundZ), 'Z']
-    ],
-    [
-      [new Audio(soundOne), '1'], [new Audio(soundTwo), '2'], [new Audio(soundThree), '3'],
-      [new Audio(soundFour), '4'], [new Audio(soundFive), '5'], [new Audio(soundSix), '6'],
-      [new Audio(soundSeven), '7'], [new Audio(soundEight), '8'], [new Audio(soundNine), '9'],
-    ]
-  ]);
-
+  const audioRef = useRef(null);
   const [, setCurrentQuestion] = useState(null);
   const [choices, setChoices] = useState([]);
   const [score, setScore] = useState(0);
   const [answer, setAnswer] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [, setIsPlaying] = useState(false);
   const [setNumber, setSetNumber] = useState(false);
   const [setAlphabet, setSetAlphabet] = useState(false);
   const [Start, setStart] = useState(false);
   const [user, setUser] = useState(null);
 
+  // Clean up Audio instance on component unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
 
-  const playSound = useCallback((audio) => {
-    if (audio && !isPlaying) {
+  const playSound = useCallback((soundSrc) => {
+    if (soundSrc) {
+      if (!audioRef.current) {
+        audioRef.current = new Audio();
+      }
+      // Pause any currently playing audio and change the source dynamically
+      audioRef.current.pause();
+      audioRef.current.src = soundSrc;
       setIsPlaying(true);
-      audio.play();
-      console.log("audio Played");
-      audio.onended = () => {
+      audioRef.current.play()
+        .then(() => {
+          console.log("audio Played");
+        })
+        .catch((err) => {
+          console.error("Audio playback error:", err);
+          setIsPlaying(false);
+        });
+      audioRef.current.onended = () => {
         setIsPlaying(false);
       };
     }
-  }, [isPlaying]);
+  }, []);
   
     // Get current user
     useEffect(() => {
@@ -116,11 +140,11 @@ export default function AlphabetQuiz() {
   const askQuestion = useCallback(() => {
     let randomQuestionSet;
     if (setAlphabet) {
-      randomQuestionSet = questions[0];
+      randomQuestionSet = QUESTIONS_DATA[0];
     } else if (setNumber) {
-      randomQuestionSet = questions[1];
+      randomQuestionSet = QUESTIONS_DATA[1];
     } else {
-      randomQuestionSet = questions[Math.floor(Math.random() * questions.length)];
+      randomQuestionSet = QUESTIONS_DATA[Math.floor(Math.random() * QUESTIONS_DATA.length)];
     }
 
     const randomIndex = Math.floor(Math.random() * randomQuestionSet.length);
@@ -145,7 +169,7 @@ export default function AlphabetQuiz() {
     setChoices(choices);
     setAnswer(correctAnswer);
     playSound(question[0]);
-  }, [questions, setAlphabet, setNumber, playSound, setCurrentQuestion, setChoices, setAnswer]);
+  }, [setAlphabet, setNumber, playSound, setCurrentQuestion, setChoices, setAnswer]);
 
   const checkAnswer = (choice) => {
     if (choice === answer) {
