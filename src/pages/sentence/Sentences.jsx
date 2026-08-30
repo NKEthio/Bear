@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import PropTypes from 'prop-types';
 import './Sentences.css';
 
 const Accordion = ({ title, children }) => {

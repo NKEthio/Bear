@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 const AnimatedRoute = ({ children }) => {
   const pageVariants = {
