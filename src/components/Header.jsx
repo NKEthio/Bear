@@ -5,47 +5,47 @@ import { useAuth } from '../hooks/useAuth';
 import LanguageSwitcher from './LanguageSwitcher';
 import './Header.css';
 
+const TRANSLATIONS = {
+  lessons: {
+    english: 'Lessons',
+    amharic: 'ትምህርቶች',
+    oromo: 'Barnoota',
+  },
+  games: {
+    english: 'Games',
+    amharic: 'ጨዋታዎች',
+    oromo: 'Taphoota',
+  },
+  about: {
+    english: 'About',
+    amharic: 'ስለ',
+    oromo: 'Waaʼee',
+  },
+  dashboard: {
+    english: 'Dashboard',
+    amharic: 'ዳሽቦርድ',
+    oromo: 'Daashboordii',
+  },
+  logout: {
+    english: 'Logout',
+    amharic: 'ውጣ',
+    oromo: 'Ba\'i',
+  },
+  login: {
+    english: 'Login',
+    amharic: 'ግባ',
+    oromo: 'Seeni',
+  },
+  signup: {
+    english: 'Signup',
+    amharic: 'ይመዝገቡ',
+    oromo: 'Galmaa\'i',
+  },
+};
+
 const Header = ({ lang, onLanguageChange }) => {
   const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const translations = {
-    lessons: {
-      english: 'Lessons',
-      amharic: 'ትምህርቶች',
-      oromo: 'Barnoota',
-    },
-    games: {
-      english: 'Games',
-      amharic: 'ጨዋታዎች',
-      oromo: 'Taphoota',
-    },
-    about: {
-      english: 'About',
-      amharic: 'ስለ',
-      oromo: 'Waaʼee',
-    },
-    dashboard: {
-      english: 'Dashboard',
-      amharic: 'ዳሽቦርድ',
-      oromo: 'Daashboordii',
-    },
-    logout: {
-      english: 'Logout',
-      amharic: 'ውጣ',
-      oromo: 'Ba\'i',
-    },
-    login: {
-      english: 'Login',
-      amharic: 'ግባ',
-      oromo: 'Seeni',
-    },
-    signup: {
-      english: 'Signup',
-      amharic: 'ይመዝገቡ',
-      oromo: 'Galmaa\'i',
-    },
-  };
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -70,12 +70,12 @@ const Header = ({ lang, onLanguageChange }) => {
 
         <div id="primary-navigation" className={`header-controls ${isMenuOpen ? 'is-open' : ''}`}>
           <nav className="navigation">
-            <Link to="/lessons" onClick={closeMenu}>{translations.lessons[lang]}</Link>
-            <Link to="/games" onClick={closeMenu}>{translations.games[lang]}</Link>
-            <Link to="/about" onClick={closeMenu}>{translations.about[lang]}</Link>
+            <Link to="/lessons" onClick={closeMenu}>{TRANSLATIONS.lessons[lang]}</Link>
+            <Link to="/games" onClick={closeMenu}>{TRANSLATIONS.games[lang]}</Link>
+            <Link to="/about" onClick={closeMenu}>{TRANSLATIONS.about[lang]}</Link>
             {user ? (
               <>
-                <Link to="/dashboard" onClick={closeMenu}>{translations.dashboard[lang]}</Link>
+                <Link to="/dashboard" onClick={closeMenu}>{TRANSLATIONS.dashboard[lang]}</Link>
                 <button
                   onClick={() => {
                     logout();
@@ -83,13 +83,13 @@ const Header = ({ lang, onLanguageChange }) => {
                   }}
                   className="logout-button"
                 >
-                  {translations.logout[lang]}
+                  {TRANSLATIONS.logout[lang]}
                 </button>
               </>
             ) : (
               <>
-                <Link to="/login" onClick={closeMenu}>{translations.login[lang]}</Link>
-                <Link to="/signup" onClick={closeMenu}>{translations.signup[lang]}</Link>
+                <Link to="/login" onClick={closeMenu}>{TRANSLATIONS.login[lang]}</Link>
+                <Link to="/signup" onClick={closeMenu}>{TRANSLATIONS.signup[lang]}</Link>
               </>
             )}
           </nav>
