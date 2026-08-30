@@ -1,0 +1,3 @@
+## 2026-05-11 - [Optimize Audio Instantiation in Quiz Components]
+**Learning:** Instantiating dozens of native `Audio` objects within a React component's initial state (or on component mount) creates substantial initial memory, CPU footprint, and garbage collection pressure, particularly when components are mounted, unmounted, or re-rendered. In contrast, hoisting the static asset pathways outside of the component and lazy-initializing a single `Audio` channel inside a React `useRef` reduces mounting overhead and avoids memory leaks.
+**Action:** Hoist static lists/mappings of asset files out of components, and utilize a single `Audio` ref with dynamic source assigning rather than pre-allocating multiple `Audio` instances eagerly.

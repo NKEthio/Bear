@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import './SoundButton.css';
 
 const SoundButton = ({ sound, text }) => {
