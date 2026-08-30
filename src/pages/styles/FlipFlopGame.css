@@ -76,3 +76,26 @@
     cursor: pointer;
     margin: 20px 0;
   }
+
+  @media (max-width: 480px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 300px;
+    }
+
+    .game-container .card ,.game-container img {
+        width: 70px;
+        height: 90px;
+    }
+
+    .card-front, .card-back {
+        font-size: 18px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 200px;
+    }
+  }

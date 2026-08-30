@@ -82,3 +82,27 @@
 .next-button:hover {
     background-color: #357abd;
 }
+
+@media (max-width: 480px) {
+    .lesson1-game1 {
+        padding: 15px;
+        width: 95%;
+    }
+
+    .lesson1-game1 h2 {
+        font-size: 1.5rem;
+    }
+
+    .lesson1-game1 p {
+        font-size: 1rem;
+    }
+
+    .score, .current-word {
+        font-size: 1.2rem;
+    }
+
+    .word-choice {
+        width: 60px;
+        height: 60px;
+    }
+}

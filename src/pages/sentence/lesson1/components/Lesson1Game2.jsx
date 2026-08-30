@@ -100,7 +100,7 @@ export default function Lesson1Game2 () {
     }, [askQuestion]);
 
     return (
-        <div className="lesson2-game2">
+        <div className="lesson1-game2">
             <h2>Audio Match Game</h2>
             <p>Listen to the audio and select the correct image!</p>
             <p className="score"><b>Score: {score}</b></p>

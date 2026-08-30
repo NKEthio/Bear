@@ -83,3 +83,25 @@
 .quiz-game .level-buttons button:hover {
     background: #4169e1;
 }
+
+@media (max-width: 640px) {
+    .quiz-game {
+        width: 95%;
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    .quiz-game h1 {
+        font-size: 1.5rem;
+    }
+
+    .quiz-game button {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+
+    .quiz-game .word-choice {
+        width: 80px;
+        height: 80px;
+    }
+}

@@ -34,3 +34,28 @@
     background-color: brown;
     font-family: 'Courier New', Courier, monospace;
 }
+
+@media (max-width: 768px) {
+    .choice {
+        width: 40%;
+        font-size: 2em;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .whole-quiz {
+        padding: 10px;
+    }
+
+    .choice {
+        width: 80%;
+        height: 80px;
+        font-size: 1.5em;
+    }
+
+    .specifics {
+        font-size: 1.5em;
+        padding: 15px;
+    }
+}

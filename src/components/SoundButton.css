@@ -18,3 +18,12 @@
 .sound-button:hover {
   background-color: #357abd;
 }
+
+@media (max-width: 600px) {
+  .sound-button {
+    width: 60px;
+    height: 60px;
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+}

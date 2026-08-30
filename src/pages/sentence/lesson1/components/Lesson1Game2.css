@@ -1,6 +1,6 @@
-/* Lesson2Game2.css */
+/* Lesson1Game2.css */
 
-.lesson2-game2 {
+.lesson1-game2 {
     background-color: #f9f9f9;
     border-radius: 20px;
     padding: 20px;
@@ -12,14 +12,14 @@
     font-family: 'Comic Sans MS', cursive, sans-serif;
 }
 
-.lesson2-game2 h2 {
+.lesson1-game2 h2 {
     font-size: 2rem;
     color: #4a90e2;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.lesson2-game2 p {
+.lesson1-game2 p {
     font-size: 1.2rem;
     color: #555;
     margin-bottom: 20px;
@@ -79,4 +79,24 @@
 
 .next-button:hover {
     background-color: #357abd;
+}
+
+@media (max-width: 480px) {
+    .lesson1-game2 {
+        padding: 15px;
+        width: 95%;
+    }
+
+    .lesson1-game2 h2 {
+        font-size: 1.5rem;
+    }
+
+    .score {
+        font-size: 1.2rem;
+    }
+
+    .word-choice {
+        width: 60px;
+        height: 60px;
+    }
 }

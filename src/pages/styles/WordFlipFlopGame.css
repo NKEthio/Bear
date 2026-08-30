@@ -98,3 +98,25 @@
 .restart:hover {
     background-color: #0056b3;
 }
+
+@media (max-width: 600px) {
+    .game-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .card {
+        width: 100%;
+        height: 120px;
+    }
+}
+
+@media (max-width: 400px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
