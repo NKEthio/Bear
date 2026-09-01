@@ -10,6 +10,11 @@ const Header = ({ lang, onLanguageChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const translations = {
+    home: {
+      english: 'Home',
+      amharic: 'መነሻ',
+      oromo: 'Fuula Duraa',
+    },
     lessons: {
       english: 'Lessons',
       amharic: 'ትምህርቶች',
@@ -20,16 +25,6 @@ const Header = ({ lang, onLanguageChange }) => {
       amharic: 'ጨዋታዎች',
       oromo: 'Taphoota',
     },
-    about: {
-      english: 'About',
-      amharic: 'ስለ',
-      oromo: 'Waaʼee',
-    },
-    dashboard: {
-      english: 'Dashboard',
-      amharic: 'ዳሽቦርድ',
-      oromo: 'Daashboordii',
-    },
     logout: {
       english: 'Logout',
       amharic: 'ውጣ',
@@ -39,11 +34,6 @@ const Header = ({ lang, onLanguageChange }) => {
       english: 'Login',
       amharic: 'ግባ',
       oromo: 'Seeni',
-    },
-    signup: {
-      english: 'Signup',
-      amharic: 'ይመዝገቡ',
-      oromo: 'Galmaa\'i',
     },
   };
 
@@ -70,27 +60,21 @@ const Header = ({ lang, onLanguageChange }) => {
 
         <div id="primary-navigation" className={`header-controls ${isMenuOpen ? 'is-open' : ''}`}>
           <nav className="navigation">
+            <Link to="/" onClick={closeMenu}>{translations.home[lang]}</Link>
             <Link to="/lessons" onClick={closeMenu}>{translations.lessons[lang]}</Link>
             <Link to="/games" onClick={closeMenu}>{translations.games[lang]}</Link>
-            <Link to="/about" onClick={closeMenu}>{translations.about[lang]}</Link>
             {user ? (
-              <>
-                <Link to="/dashboard" onClick={closeMenu}>{translations.dashboard[lang]}</Link>
-                <button
-                  onClick={() => {
-                    logout();
-                    closeMenu();
-                  }}
-                  className="logout-button"
-                >
-                  {translations.logout[lang]}
-                </button>
-              </>
+              <button
+                onClick={() => {
+                  logout();
+                  closeMenu();
+                }}
+                className="logout-button"
+              >
+                {translations.logout[lang]}
+              </button>
             ) : (
-              <>
-                <Link to="/login" onClick={closeMenu}>{translations.login[lang]}</Link>
-                <Link to="/signup" onClick={closeMenu}>{translations.signup[lang]}</Link>
-              </>
+              <Link to="/login" onClick={closeMenu}>{translations.login[lang]}</Link>
             )}
           </nav>
           <div className="language-switcher-container">
