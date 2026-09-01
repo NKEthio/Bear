@@ -27,7 +27,8 @@ export default function WordQuiz() {
     const [score, setScore] = useState(0);
     const [timeLeft, setTimeLeft] = useState(10);
     const [user, setUser] = useState(null);
-    const [gameStarted, setGameStarted] = useState(false);
+    const [gameStarted] = useState(true); // Open directly visible
+    const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -67,15 +68,24 @@ export default function WordQuiz() {
         speakWord(randomWord);
     }, [level]);
 
+    // Initial question load when component mounts
     useEffect(() => {
-        if (gameStarted && timeLeft > 0) {
+        if (!currentWord) {
+            askQuestion();
+        }
+    }, [askQuestion, currentWord]);
+
+    useEffect(() => {
+        if (gameStarted && !isPaused && timeLeft > 0) {
             const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
             return () => clearTimeout(timer);
-        } else if (gameStarted && timeLeft === 0) {
+        } else if (gameStarted && !isPaused && timeLeft === 0) {
             setFeedback("Time's up! Try again.");
+            playBuzzSound();
+            if (navigator.vibrate) navigator.vibrate(200);
             setTimeout(() => askQuestion(), 1500);
         }
-    }, [timeLeft, gameStarted, askQuestion]);
+    }, [timeLeft, gameStarted, isPaused, askQuestion]);
 
     const saveScore = useCallback(async () => {
         if (!user) return;
@@ -98,7 +108,33 @@ export default function WordQuiz() {
         };
     }, [saveScore]);
 
+    const playBuzzSound = () => {
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+            const ctx = new AudioContext();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+
+            osc.type = "sawtooth";
+            osc.frequency.setValueAtTime(150, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(60, ctx.currentTime + 0.25);
+
+            gain.gain.setValueAtTime(0.3, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.start();
+            osc.stop(ctx.currentTime + 0.25);
+        } catch (e) {
+            console.error("Audio synth error", e);
+        }
+    };
+
     const speakWord = (word) => {
+        if (!window.speechSynthesis) return;
         const speech = new SpeechSynthesisUtterance(word);
         speech.lang = "en-US";
         speech.rate = 0.8;
@@ -106,25 +142,52 @@ export default function WordQuiz() {
     };
 
     const checkAnswer = (selectedImagePath) => {
+        if (isPaused) return;
+
         if (selectedImagePath === answer) {
             setScore(score + levels[level].points);
             setFeedback("Correct! Well done!");
             setTimeout(() => askQuestion(), 1000);
         } else {
             setFeedback("Incorrect, Try Again");
+            playBuzzSound();
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100]);
+            }
         }
     };
 
     return (
-        <div className="quiz-game">
-            <h1>Word Quiz Game</h1>
-            {!gameStarted ? (
-                <button onClick={() => { setGameStarted(true); askQuestion(); }}>Start Game</button>
+        <div className="quiz-game quiz-game-centered">
+            <div className="quiz-header">
+                <h1>Word Quiz Game</h1>
+                <button
+                    className="pause-btn"
+                    onClick={() => setIsPaused(!isPaused)}
+                >
+                    {isPaused ? "▶ Resume" : "⏸ Pause"}
+                </button>
+            </div>
+
+            {isPaused ? (
+                <div className="paused-overlay">
+                    <h2>Game Paused</h2>
+                    <p>Take a breath and press Resume to continue!</p>
+                </div>
             ) : (
                 <>
-                    <p className="score"><b>Score: {score}</b></p>
-                    <p className="timer">Time Left: {timeLeft}s</p>
-                    <p className="currentWord"><strong>{currentWord}</strong></p>
+                    <div className="quiz-status-bar">
+                        <p className="score"><b>Score: {score}</b></p>
+                        <p className="timer">Time Left: {timeLeft}s</p>
+                    </div>
+
+                    <div className="word-display-area">
+                        <p className="currentWord"><strong>{currentWord}</strong></p>
+                        <button className="listen-again-btn" onClick={() => speakWord(currentWord)}>
+                            🔊 Listen
+                        </button>
+                    </div>
+
                     <div className="choices">
                         {choices.map((imagePath, index) => (
                             <img
@@ -136,11 +199,32 @@ export default function WordQuiz() {
                             />
                         ))}
                     </div>
-                    {feedback && <p className="feedback">{feedback}</p>}
+
+                    {feedback && (
+                        <p className={`feedback ${feedback.includes("Correct") ? "success" : "error"}`}>
+                            {feedback}
+                        </p>
+                    )}
+
                     <div className="level-buttons">
-                        <button onClick={() => setLevel("beginner")}>Beginner</button>
-                        <button onClick={() => setLevel("intermediate")}>Intermediate</button>
-                        <button onClick={() => setLevel("advanced")}>Advanced</button>
+                        <button
+                            className={level === "beginner" ? "active-level" : ""}
+                            onClick={() => setLevel("beginner")}
+                        >
+                            Beginner
+                        </button>
+                        <button
+                            className={level === "intermediate" ? "active-level" : ""}
+                            onClick={() => setLevel("intermediate")}
+                        >
+                            Intermediate
+                        </button>
+                        <button
+                            className={level === "advanced" ? "active-level" : ""}
+                            onClick={() => setLevel("advanced")}
+                        >
+                            Advanced
+                        </button>
                     </div>
                 </>
             )}

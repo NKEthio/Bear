@@ -37,6 +37,7 @@ import OromoHome from './pages/common/OromoHome';
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import AnimatedRoute from './components/AnimatedRoute';
+import AppTutorial from './components/AppTutorial';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -122,6 +123,7 @@ function App() {
     <Router>
       <Header lang={lang} onLanguageChange={handleLanguageChange} />
       <AnimatedRoutes />
+      <AppTutorial />
     </Router>
   );
 }
