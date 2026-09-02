@@ -1,4 +1,16 @@
 @import './_variables.css';
+@import './Auth.css';
+@import './EngHome.css';
+@import './Dashboard.css';
+@import './Grammar.css';
+@import './AlphabetGame.css';
+@import './AlphabetQuiz.css';
+@import './FlipFlopGame.css';
+@import './MatchCase.css';
+@import './WordCubes.css';
+@import './WordFlipFlopGame.css';
+@import './WordGame.css';
+@import './wordQuiz.css';
 
 * {
   box-sizing: border-box;

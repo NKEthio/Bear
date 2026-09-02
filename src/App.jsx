@@ -3,41 +3,44 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAuth } from './hooks/useAuth';
 
-import Home from './pages/common/Home';
-import EngHome from './pages/common/EngHome';
-import Lessons from './pages/features/Lessons';
-import Alphabets from './pages/alphabet/Alphabets';
-import Words from './pages/word/Words';
-import Sentences from './pages/sentence/Sentences';
-import About from './pages/common/About';
-import Games from './pages/games/Games';
-import AlphabetGame from './pages/games/alphabet/AlphabetGame';
-import WordGame from './pages/games/word/WordGame';
-import WordScrambleGame from './pages/games/word/WordScrambleGame';
-import PictureMatchGame from './pages/games/word/PictureMatchGame';
-import SpellingBeeGame from './pages/games/word/SpellingBeeGame';
-import SentenceGame from './pages/games/sentence/SentenceGame';
-import Speech from './pages/speech/Speech';
-import Dashboard from './pages/features/Dashboard';
-import Signup from './pages/auth/Signup';
-import Login from './pages/auth/Login';
-import Grammar from './pages/grammar/Grammar';
-import GrammarGame from './pages/games/grammar/GrammarGame';
-import AI from './pages/AI/Deepseek';
-import Drawing from './pages/drawing/Drawing';
-import AlphabetWords from './pages/alphabetWords/AlphabetWords';
-import Lesson1 from './pages/sentence/lesson1/Lesson1';
-import Feedback from './pages/feedback/Feedback';
-import Lesson1Game from './pages/sentence/lesson1/Lesson1Game';
-import AmHome from './pages/common/AmHome';
-import Hahu from './pages/Amharic/hohiat/Hahu';
-import Qalat from './pages/Amharic/qalat/Qalat';
-import OromoHome from './pages/common/OromoHome';
+import Home from './features/languages/Home';
+import EngHome from './features/languages/EngHome';
+import AmHome from './features/languages/AmHome';
+import OromoHome from './features/languages/OromoHome';
+import About from './features/languages/About';
+import Hahu from './features/languages/Amharic/hohiat/Hahu';
+import Qalat from './features/languages/Amharic/qalat/Qalat';
+
+import Lessons from './features/dashboard/Lessons';
+import Dashboard from './features/dashboard/Dashboard';
+
+import Alphabets from './features/learning/alphabet/Alphabets';
+import Words from './features/learning/word/Words';
+import Lesson1 from './features/learning/sentence/lesson1/Lesson1';
+import Sentences from './features/learning/sentence/Sentences';
+import Grammar from './features/learning/grammar/Grammar';
+import Speech from './features/learning/speech/Speech';
+import AlphabetWords from './features/learning/alphabetWords/AlphabetWords';
+
+import Games from './features/games/Games';
+import Lesson1Game from './features/learning/sentence/lesson1/Lesson1Game';
+import AlphabetGame from './features/games/alphabet/AlphabetGame';
+import WordGame from './features/games/word/WordGame';
+import WordScrambleGame from './features/games/word/WordScrambleGame';
+import PictureMatchGame from './features/games/word/PictureMatchGame';
+import SpellingBeeGame from './features/games/word/SpellingBeeGame';
+import SentenceGame from './features/games/sentence/SentenceGame';
+import GrammarGame from './features/games/grammar/GrammarGame';
+
+import AI from './features/ai/Deepseek';
+import Drawing from './features/drawing/Drawing';
+import Feedback from './features/feedback/Feedback';
+import Signup from './features/auth/Signup';
+import Login from './features/auth/Login';
 
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import AnimatedRoute from './components/AnimatedRoute';
-import AppTutorial from './components/AppTutorial';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -73,7 +76,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<AnimatedRoute><About /></AnimatedRoute>} />
         <Route path="/amHome" element={<AnimatedRoute><AmHome /></AnimatedRoute>} />
         <Route path="/hahu" element={<AnimatedRoute><Hahu /></AnimatedRoute>} />
-        <Route path={"/qalat"} element={<AnimatedRoute><Qalat /></AnimatedRoute>} />
+        <Route path="/qalat" element={<AnimatedRoute><Qalat /></AnimatedRoute>} />
         <Route path="/ormoHome" element={<AnimatedRoute><OromoHome /></AnimatedRoute>} />
       </Routes>
     </AnimatePresence>
@@ -123,7 +126,6 @@ function App() {
     <Router>
       <Header lang={lang} onLanguageChange={handleLanguageChange} />
       <AnimatedRoutes />
-      <AppTutorial />
     </Router>
   );
 }
